@@ -1,8 +1,13 @@
-import { useRouteError } from 'react-router-dom';
-import { MainLayout } from '../layouts/MainLayout';
+import { useRouteError } from "react-router-dom";
+import { MainLayout } from "../layouts/MainLayout";
+
+type RouteError = {
+  statusText?: string;
+  message?: string;
+};
 
 export default function ErrorPage() {
-  const error = useRouteError();
+  const error = useRouteError() as RouteError;
   console.error(error);
 
   return (
