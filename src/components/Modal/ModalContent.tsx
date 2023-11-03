@@ -1,4 +1,4 @@
-export default function ModalContent({ onClose }) {
+export default function ModalContent({ onClose }: { onClose: () => void }) {
   return (
     <div id="modal">
       <div className="bg-gray-500 bg-opacity-70 absolute top-0 left-0 right-0 bottom-0 flex justify-center items-center">
