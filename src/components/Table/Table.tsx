@@ -9,6 +9,8 @@ import {
 } from "@tanstack/react-table";
 import "./Table.css";
 import React, { useState, useMemo } from "react";
+import { useAppDispatch } from "@/store/hooks";
+import { showDialog } from "@/store/features/uiSlice";
 import { Order } from "@/interfaces/table-dto";
 
 const Table = ({
@@ -51,6 +53,12 @@ const Table = ({
     onGlobalFilterChange: setFiltering,
   });
 
+  const dispatch = useAppDispatch();
+
+  const openDialogInfo = () => {
+    dispatch(showDialog());
+  };
+
   return (
     <div className="">
       <table className="w3-table-all mb-4">
@@ -70,7 +78,11 @@ const Table = ({
         </thead>
         <tbody>
           {table.getRowModel().rows.map((row) => (
-            <tr key={row.id}>
+            <tr
+              key={row.id}
+              className="cursor-pointer"
+              onClick={openDialogInfo}
+            >
               {row.getVisibleCells().map((cell) => (
                 <td key={cell.id}>
                   {flexRender(cell.column.columnDef.cell, cell.getContext())}
