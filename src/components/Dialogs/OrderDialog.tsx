@@ -203,12 +203,17 @@ const OrderDialog = ({ btnText }: { btnText: string }) => {
   const [open, setOpen] = useState(false);
   const dialog = useAppSelector((state) => state.uiSliceReducer.dialog);
   const dispatch = useAppDispatch();
+
+  useEffect(() => {
+    dispatch(showDialog(false));
+  }, []);
+
   useEffect(() => {
     if (dialog) {
       setOpen(true);
     } else {
       setOpen(false);
-      dispatch(showDialog());
+      dispatch(showDialog(false));
     }
   }, [dialog]);
   return (
