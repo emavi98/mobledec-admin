@@ -56,7 +56,7 @@ const Table = ({
   const dispatch = useAppDispatch();
 
   const openDialogInfo = () => {
-    dispatch(showDialog());
+    dispatch(showDialog(true));
   };
 
   return (

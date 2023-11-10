@@ -8,8 +8,8 @@ export const uiSlice = createSlice({
   name: "UI",
   initialState,
   reducers: {
-    showDialog(state) {
-      state.dialog = !state.dialog;
+    showDialog(state, { payload }) {
+      state.dialog = payload;
     },
   },
 });
