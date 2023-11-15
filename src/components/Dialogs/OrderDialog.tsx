@@ -1,11 +1,7 @@
-import {
-  Dialog,
-  DialogContent,
-  DialogHeader,
-  DialogTrigger,
-} from "@/components/ui/dialog";
+import Dialog from "./Dialog";
+import UpDialog from "./UpDialog";
 import { Input } from "@/components/ui/input";
-import Select from "react-select";
+import Select, { SingleValue } from "react-select";
 import {
   Select as SelectSH,
   SelectContent,
@@ -14,18 +10,23 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { Button } from "../ui/button";
-import { useEffect, useState } from "react";
-
-import { useAppDispatch, useAppSelector } from "@/store/hooks";
-import { showDialog } from "@/store/features/uiSlice";
-
-const options = [
-  { value: "Molchon", label: "Colchon" },
-  { value: "Mesa", label: "Mesa" },
-  { value: "Silla", label: "Silla" },
-];
+import { useState } from "react";
+import productD from "@/MOCK_DATA_PRODUCTS.json";
+import { Product } from "@/interfaces/table-dto";
 
 const InfoClient = () => {
+  const [error, setError] = useState("");
+  const handleEmail = (ev: React.ChangeEvent<HTMLInputElement>) => {
+    const emailValue = ev.target.value;
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    const isValidEmail = emailRegex.test(emailValue);
+
+    if (!isValidEmail) {
+      setError("El email es invalido");
+    } else {
+      setError("");
+    }
+  };
   return (
     <div className="mb-8 border border-slate-400 rounded-md p-4">
       <h2>Datos de cliente</h2>
@@ -42,6 +43,26 @@ const InfoClient = () => {
           <Input
             id="lastname"
             className="outline-0 focus-visible:ring-offset-0"
+          />
+        </div>
+        <div>
+          <label htmlFor="email">Email</label>
+          <Input
+            id="email"
+            className={`outline-0 focus-visible:ring-offset-0 ${
+              error.includes("email") ? "border border-red-500" : ""
+            }`}
+            type="email"
+            onBlur={handleEmail}
+          />
+          {error.includes("email") && <p className="text-red-500">{error}</p>}
+        </div>
+        <div>
+          <label htmlFor="password">Contraseña</label>
+          <Input
+            id="password"
+            className="outline-0 focus-visible:ring-offset-0"
+            type="password"
           />
         </div>
         <div>
@@ -74,39 +95,136 @@ const InfoClient = () => {
 };
 
 const InfoOrder = () => {
+  const productData = productD.map((item) => ({
+    value: item.name,
+    label: item.name,
+  }));
+
+  const [product, setProduct] = useState<Product>();
+  const [products, setProducts] = useState<Product[]>([]);
+  const [showProduct, setShowProduct] = useState(false);
+  const [priceProduct, setPriceProduct] = useState(0);
+
+  const declareProduct = (product: Product) => {
+    setShowProduct(true);
+    setProduct(product);
+    setPriceProduct(product.cost);
+  };
+
+  const handleProduct = (
+    newValue: SingleValue<{ value: string; label: string }> | null
+  ) => {
+    if (newValue) {
+      const selectedValue = newValue.value;
+      const [productFiltered] = productD.filter(
+        (item) => item.name === selectedValue
+      );
+
+      declareProduct(productFiltered);
+    }
+  };
+
+  const editProduct = (ev: React.MouseEvent<HTMLParagraphElement>) => {
+    const productId = ev.currentTarget.getAttribute("data-id");
+    if (productId) {
+      const productSelected = products.find((item) => item.id === +productId);
+      declareProduct(productSelected as Product);
+    }
+  };
+
+  const eliminateProduct = (ev: React.MouseEvent<HTMLParagraphElement>) => {
+    const productId = ev.currentTarget.getAttribute("data-id");
+    if (productId) {
+      const filteredProducts = products.filter(
+        (item) => item.id !== +productId
+      );
+      setProducts(filteredProducts);
+    }
+  };
+
   return (
-    <div className="mb-8 border border-slate-400 rounded-md p-4">
-      <h2>Datos de pedido</h2>
-      <div className="mt-8">
-        <Select
-          isMulti
-          name="colors"
-          options={options}
-          className="basic-multi-select"
-          classNamePrefix="Busca..."
-        />
-      </div>
-      <div id="results" className="mt-4">
-        <div className="flex gap-4">
-          <p className="text-sm">Colchon 1,5 -- 500€</p>
-          <div className="flex items-start gap-2">
-            <div className="flex items-start gap-2">
-              <Input type="checkbox" id="order" className="w-[20px] h-[20px]" />
-              <label htmlFor="order" className="text-sm">
-                Hacer Pedido
-              </label>
-            </div>
-            /
-            <div className="flex items-start gap-2">
-              <Input type="checkbox" id="stock" className="w-[20px] h-[20px]" />
-              <label htmlFor="stock" className="text-sm">
-                Rebajar Stock
-              </label>
-            </div>
-          </div>
+    <>
+      <div className="mb-8 border border-slate-400 rounded-md p-4 relative min-h-[180px]">
+        {showProduct && (
+          <UpDialog
+            onShow={setShowProduct}
+            product={product as Product}
+            products={products}
+            price={priceProduct}
+            setProducts={setProducts}
+          />
+        )}
+        <h2>Datos de pedido</h2>
+        <div className="mt-8">
+          <Select
+            name="colors"
+            options={productData}
+            className="basic-multi-select"
+            classNamePrefix="Busca..."
+            onChange={handleProduct}
+          />
+        </div>
+        <div id="results" className="mt-4 flex flex-col gap-2">
+          {products.length > 0 &&
+            products.map((item) => (
+              <div
+                className="flex flex-col gap-2 border border-slate-400 rounded-xl p-2"
+                key={item?.id}
+              >
+                <div className="flex flex-col gap-2">
+                  <p className="text">
+                    <span className="font-bold text">Producto:</span>{" "}
+                    {item.name}
+                  </p>
+                  <p>
+                    <span className="font-bold">Precio:</span>{" "}
+                    {new Intl.NumberFormat("de-DE", {
+                      style: "currency",
+                      currency: "EUR",
+                    }).format(item.cost)}
+                  </p>
+                </div>
+                <div className="flex items-center justify-between gap-2">
+                  <div className="flex items-start gap-2">
+                    <p className="font-bold text">Cantidad:</p>
+                    <div className="flex gap-3">
+                      <span>{item.quantity}</span>
+                    </div>
+                  </div>
+                </div>
+                <div className="flex justify-between gap-4">
+                  <div className="flex gap-2">
+                    <p className="font-bold">Total:</p>
+                    <span>
+                      {new Intl.NumberFormat("de-DE", {
+                        style: "currency",
+                        currency: "EUR",
+                      }).format(+item.subTotal!)}
+                    </span>
+                  </div>
+
+                  <div className="flex gap-2">
+                    <p
+                      className="text-blue-600 cursor-pointer"
+                      onClick={editProduct}
+                      data-id={item?.id}
+                    >
+                      Editar
+                    </p>
+                    <p
+                      className="text-red-600 cursor-pointer"
+                      onClick={eliminateProduct}
+                      data-id={item?.id}
+                    >
+                      Eliminar
+                    </p>
+                  </div>
+                </div>
+              </div>
+            ))}
         </div>
       </div>
-    </div>
+    </>
   );
 };
 
@@ -199,45 +317,16 @@ const CreateOrder = () => {
   );
 };
 
-const OrderDialog = ({ btnText }: { btnText: string }) => {
-  const [open, setOpen] = useState(false);
-  const dialog = useAppSelector((state) => state.uiSliceReducer.dialog);
-  const dispatch = useAppDispatch();
-
-  useEffect(() => {
-    dispatch(showDialog(false));
-  }, []);
-
-  useEffect(() => {
-    if (dialog) {
-      setOpen(true);
-    } else {
-      setOpen(false);
-      dispatch(showDialog(false));
-    }
-  }, [dialog]);
+const OrderDialog = () => {
   return (
-    <Dialog open={open} onOpenChange={setOpen}>
-      <DialogTrigger className="inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 bg-primary text-primary-foreground hover:bg-primary/90 h-10 px-4 py-2 w-[200px]">
-        {btnText}
-      </DialogTrigger>
-      <DialogContent className="max-w-xl overflow-y-scroll max-h-screen h-[90%]">
-        <DialogHeader>
-          <div>
-            <InfoClient />
-            <InfoOrder />
-            <ShippingLogic />
-            <PriceOptions />
-            <CreateOrder />
-
-            <div className="flex items-center justify-center mt-4">
-              <Button className="min-w-[200px]" onClick={() => setOpen(false)}>
-                Ok
-              </Button>
-            </div>
-          </div>
-        </DialogHeader>
-      </DialogContent>
+    <Dialog textBtn="crear pedido">
+      <div>
+        <InfoClient />
+        <InfoOrder />
+        <ShippingLogic />
+        <PriceOptions />
+        <CreateOrder />
+      </div>
     </Dialog>
   );
 };

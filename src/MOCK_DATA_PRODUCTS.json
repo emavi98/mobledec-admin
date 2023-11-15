@@ -1,0 +1,602 @@
+[
+  {
+    "id": 1,
+    "name": "Turkey - Whole, Fresh",
+    "cost": 525,
+    "description": "Other infective (teno)synovitis, shoulder"
+  },
+  {
+    "id": 2,
+    "name": "Jicama",
+    "cost": 656,
+    "description": "Hemorrhage due to genitourinary prosth dev/grft, subs"
+  },
+  {
+    "id": 3,
+    "name": "Smirnoff Green Apple Twist",
+    "cost": 151,
+    "description": "Abscess of tendon sheath, unspecified ankle and foot"
+  },
+  {
+    "id": 4,
+    "name": "V8 - Vegetable Cocktail",
+    "cost": 960,
+    "description": "Nondisp transverse fx shaft of unsp ulna, 7thN"
+  },
+  {
+    "id": 5,
+    "name": "Apple - Northern Spy",
+    "cost": 356,
+    "description": "Extrarenal uremia"
+  },
+  {
+    "id": 6,
+    "name": "Maintenance Removal Charge",
+    "cost": 767,
+    "description": "Other fractures of lower end of unspecified radius"
+  },
+  {
+    "id": 7,
+    "name": "Pasta - Tortellini, Fresh",
+    "cost": 377,
+    "description": "Chronic or unspecified gastrojejunal ulcer with perforation"
+  },
+  {
+    "id": 8,
+    "name": "Sesame Seed Black",
+    "cost": 621,
+    "description": "Nondisp fx of proximal phalanx of l little finger, sequela"
+  },
+  {
+    "id": 9,
+    "name": "Onions Granulated",
+    "cost": 259,
+    "description": "Secondary osteoarthritis of other joints"
+  },
+  {
+    "id": 10,
+    "name": "Ecolab Crystal Fusion",
+    "cost": 980,
+    "description": "Sarcoid arthropathy"
+  },
+  {
+    "id": 11,
+    "name": "Beef - Ox Tongue, Pickled",
+    "cost": 507,
+    "description": "Nondisp fx of base of 2nd MC bone, r hand, 7thG"
+  },
+  {
+    "id": 12,
+    "name": "Oil - Sunflower",
+    "cost": 385,
+    "description": "I/I react d/t cranial or spinal infusion catheter, sequela"
+  },
+  {
+    "id": 13,
+    "name": "Trout - Rainbow, Frozen",
+    "cost": 211,
+    "description": "Contusion of left lesser toe(s) w damage to nail, subs"
+  },
+  {
+    "id": 14,
+    "name": "Butcher Twine 4r",
+    "cost": 311,
+    "description": "Bursitis, left hand"
+  },
+  {
+    "id": 15,
+    "name": "Water - Perrier",
+    "cost": 125,
+    "description": "Mech loosening of internal right hip prosth joint, sequela"
+  },
+  {
+    "id": 16,
+    "name": "Flour - Semolina",
+    "cost": 682,
+    "description": "Contact with other mammals"
+  },
+  {
+    "id": 17,
+    "name": "Banana",
+    "cost": 706,
+    "description": "Burn of second degree of left ankle"
+  },
+  {
+    "id": 18,
+    "name": "Vacuum Bags 12x16",
+    "cost": 394,
+    "description": "Mech compl of int fix of bones of hand and fingers"
+  },
+  {
+    "id": 19,
+    "name": "Steel Wool",
+    "cost": 605,
+    "description": "Other abnormal auditory perceptions, right ear"
+  },
+  {
+    "id": 20,
+    "name": "Arctic Char - Fresh, Whole",
+    "cost": 444,
+    "description": "Laceration of blood vessel of left index finger, subs encntr"
+  },
+  {
+    "id": 21,
+    "name": "Kumquat",
+    "cost": 250,
+    "description": "Driver of 3-whl mv inj in clsn w rail trn/veh nontraf, subs"
+  },
+  {
+    "id": 22,
+    "name": "Wine - Niagara,vqa Reisling",
+    "cost": 359,
+    "description": "Subacute osteomyelitis, left tibia and fibula"
+  },
+  {
+    "id": 23,
+    "name": "Cranberry Foccacia",
+    "cost": 184,
+    "description": "Inj r int crtd,intcr w LOC w dth d/t oth cause bf consc,subs"
+  },
+  {
+    "id": 24,
+    "name": "Sobe - Green Tea",
+    "cost": 752,
+    "description": "Other specified injury of superior vena cava, init encntr"
+  },
+  {
+    "id": 25,
+    "name": "Tomato - Peeled Italian Canned",
+    "cost": 1000,
+    "description": "Partial traumatic amputation at hip joint"
+  },
+  {
+    "id": 26,
+    "name": "Cup - 6oz, Foam",
+    "cost": 984,
+    "description": "Pedestrian injured in unsp transport accident, init encntr"
+  },
+  {
+    "id": 27,
+    "name": "Marjoram - Fresh",
+    "cost": 820,
+    "description": "Papyraceous fetus, third trimester, other fetus"
+  },
+  {
+    "id": 28,
+    "name": "Pork - Bacon, Sliced",
+    "cost": 875,
+    "description": "Snsrnrl hear loss, uni, left ear, w unrestr hear cntra side"
+  },
+  {
+    "id": 29,
+    "name": "Wine - Segura Viudas Aria Brut",
+    "cost": 925,
+    "description": "Hallucinogen abuse with intoxication, uncomplicated"
+  },
+  {
+    "id": 30,
+    "name": "Pie Shell - 5",
+    "cost": 501,
+    "description": "Torus fx upper end of left ulna, subs for fx w malunion"
+  },
+  {
+    "id": 31,
+    "name": "Sugar - White Packet",
+    "cost": 784,
+    "description": "Displ oblique fx shaft of r femr, 7thH"
+  },
+  {
+    "id": 32,
+    "name": "Swordfish Loin Portions",
+    "cost": 842,
+    "description": "Legal intervnt involving firearm discharge, suspect injured"
+  },
+  {
+    "id": 33,
+    "name": "Amaretto",
+    "cost": 711,
+    "description": "Hit by object from burning bldg in uncntrld fire, sequela"
+  },
+  {
+    "id": 34,
+    "name": "Lentils - Red, Dry",
+    "cost": 322,
+    "description": "Poisoning by oth systemic antibiotics, accidental, sequela"
+  },
+  {
+    "id": 35,
+    "name": "Cheese - Cambozola",
+    "cost": 583,
+    "description": "Pressure ulcer of left heel, unspecified stage"
+  },
+  {
+    "id": 36,
+    "name": "Tomatoes - Hot House",
+    "cost": 961,
+    "description": "Poisoning by barbiturates, intentional self-harm"
+  },
+  {
+    "id": 37,
+    "name": "Milk - Skim",
+    "cost": 507,
+    "description": "Burn due to other powered watercraft on fire"
+  },
+  {
+    "id": 38,
+    "name": "Vinegar - Champagne",
+    "cost": 139,
+    "description": "Unspecified symbolic dysfunctions"
+  },
+  {
+    "id": 39,
+    "name": "Lychee",
+    "cost": 349,
+    "description": "Burn of third degree of thumb (nail)"
+  },
+  {
+    "id": 40,
+    "name": "Grapes - Green",
+    "cost": 598,
+    "description": "Toxic effect of ingested (parts of) plant(s), undet, subs"
+  },
+  {
+    "id": 41,
+    "name": "Beans - Black Bean, Canned",
+    "cost": 420,
+    "description": "Nondisplaced fracture of first metatarsal bone, left foot"
+  },
+  {
+    "id": 42,
+    "name": "Bread Base - Gold Formel",
+    "cost": 932,
+    "description": "War op involving explosn of improv explosv device, civilian"
+  },
+  {
+    "id": 43,
+    "name": "Juice Peach Nectar",
+    "cost": 801,
+    "description": "Unsp fracture of r forearm, subs for clos fx w routn heal"
+  },
+  {
+    "id": 44,
+    "name": "Vol Au Vents",
+    "cost": 330,
+    "description": "Displaced avulsion fracture (chip fracture) of left talus"
+  },
+  {
+    "id": 45,
+    "name": "Pan Grease",
+    "cost": 451,
+    "description": "Nonrheumatic aortic valve disorder, unspecified"
+  },
+  {
+    "id": 46,
+    "name": "Compound - Orange",
+    "cost": 137,
+    "description": "Idiopathic chronic gout, unsp ankle and foot, with tophus"
+  },
+  {
+    "id": 47,
+    "name": "Spice - Pepper Portions",
+    "cost": 689,
+    "description": "Disp fx of anterior wall of unsp acetabulum, init for opn fx"
+  },
+  {
+    "id": 48,
+    "name": "Dill Weed - Fresh",
+    "cost": 859,
+    "description": "Toxic effect of chlorofluorocarbons, accidental"
+  },
+  {
+    "id": 49,
+    "name": "Beef - Sushi Flat Iron Steak",
+    "cost": 289,
+    "description": "Unsp injury of unsp blood vessel of thorax, init encntr"
+  },
+  {
+    "id": 50,
+    "name": "Milk - Skim",
+    "cost": 375,
+    "description": "Subluxation of carpometacarpal joint of right thumb, subs"
+  },
+  {
+    "id": 51,
+    "name": "Chocolate - Pistoles, White",
+    "cost": 550,
+    "description": "Traumatic rupture of unsp radiocarpal ligament, init encntr"
+  },
+  {
+    "id": 52,
+    "name": "Sage - Ground",
+    "cost": 683,
+    "description": "Disruption of internal operation (surgical) wound, NEC, init"
+  },
+  {
+    "id": 53,
+    "name": "Rice - Wild",
+    "cost": 630,
+    "description": "Displaced spiral fracture of shaft of unsp fibula, sequela"
+  },
+  {
+    "id": 54,
+    "name": "Sole - Iqf",
+    "cost": 718,
+    "description": "Toxic effect of venom of other arthropods"
+  },
+  {
+    "id": 55,
+    "name": "Spice - Greek 1 Step",
+    "cost": 265,
+    "description": "Exposure to excessive natural heat, subsequent encounter"
+  },
+  {
+    "id": 56,
+    "name": "Chocolate - Dark",
+    "cost": 973,
+    "description": "Path fracture in oth disease, l hand, subs for fx w nonunion"
+  },
+  {
+    "id": 57,
+    "name": "Olive - Spread Tapenade",
+    "cost": 505,
+    "description": "Displaced bimalleolar fracture of left lower leg"
+  },
+  {
+    "id": 58,
+    "name": "Veal - Leg",
+    "cost": 906,
+    "description": "Nondisp fx of medial phalanx of oth finger, init for opn fx"
+  },
+  {
+    "id": 59,
+    "name": "Mussels - Cultivated",
+    "cost": 413,
+    "description": "Flaccid hemiplegia affecting right dominant side"
+  },
+  {
+    "id": 60,
+    "name": "Longos - Chicken Curried",
+    "cost": 788,
+    "description": "Disp fx of third metatarsal bone, unspecified foot, sequela"
+  },
+  {
+    "id": 61,
+    "name": "Schnappes - Peach, Walkers",
+    "cost": 681,
+    "description": "Other instability, unspecified ankle"
+  },
+  {
+    "id": 62,
+    "name": "Bar Mix - Lime",
+    "cost": 428,
+    "description": "Foreign body in other parts of alimentary tract"
+  },
+  {
+    "id": 63,
+    "name": "Seabream Whole Farmed",
+    "cost": 986,
+    "description": "Displacement of graft of urinary organ, sequela"
+  },
+  {
+    "id": 64,
+    "name": "Table Cloth 144x90 White",
+    "cost": 305,
+    "description": "Infection of obstetric surgical wound"
+  },
+  {
+    "id": 65,
+    "name": "Sausage - Blood Pudding",
+    "cost": 686,
+    "description": "Sprain of MTP joint of unsp lesser toe(s), init"
+  },
+  {
+    "id": 66,
+    "name": "Pork - Chop, Frenched",
+    "cost": 825,
+    "description": "Strain of unsp musc/fasc/tend at wrs/hnd lv, left hand, init"
+  },
+  {
+    "id": 67,
+    "name": "Beef Wellington",
+    "cost": 521,
+    "description": "Intentional self-harm by oth gas, air or spring-operated gun"
+  },
+  {
+    "id": 68,
+    "name": "Food Colouring - Blue",
+    "cost": 115,
+    "description": "Poisn by oth prim sys and hematolog agents, acc, sequela"
+  },
+  {
+    "id": 69,
+    "name": "Gatorade - Fruit Punch",
+    "cost": 481,
+    "description": "Lateral dislocation of right patella, subsequent encounter"
+  },
+  {
+    "id": 70,
+    "name": "Fuji Apples",
+    "cost": 993,
+    "description": "Unsp fx low end unsp tibia, 7thH"
+  },
+  {
+    "id": 71,
+    "name": "Wine La Vielle Ferme Cote Du",
+    "cost": 743,
+    "description": "Unspecified dislocation of right index finger, init encntr"
+  },
+  {
+    "id": 72,
+    "name": "Kellogs Raisan Bran Bars",
+    "cost": 490,
+    "description": "Burn of third degree of unspecified ear"
+  },
+  {
+    "id": 73,
+    "name": "Tomatoes",
+    "cost": 842,
+    "description": "Failure of steril precaut during surgical and medical care"
+  },
+  {
+    "id": 74,
+    "name": "Marjoram - Dried, Rubbed",
+    "cost": 336,
+    "description": "Postdysenteric arthropathy, right wrist"
+  },
+  {
+    "id": 75,
+    "name": "Juice - Cranberry 284ml",
+    "cost": 295,
+    "description": "Sltr-haris Type IV physl fx low end r tibia, 7thD"
+  },
+  {
+    "id": 76,
+    "name": "Alize Gold Passion",
+    "cost": 155,
+    "description": "Unspecified fracture of right foot"
+  },
+  {
+    "id": 77,
+    "name": "Seabream Whole Farmed",
+    "cost": 145,
+    "description": "Focal chorioretinal inflammation, juxtapapillary, left eye"
+  },
+  {
+    "id": 78,
+    "name": "Cheese - Shred Cheddar / Mozza",
+    "cost": 447,
+    "description": "Encounter for screening for malignant neoplasm of testis"
+  },
+  {
+    "id": 79,
+    "name": "Bread - Italian Roll With Herbs",
+    "cost": 496,
+    "description": "Corros 1st deg of unsp site unsp lower limb, ex ank/ft, init"
+  },
+  {
+    "id": 80,
+    "name": "Butter - Salted",
+    "cost": 691,
+    "description": "Unsp opn wnd r bk wl of thorax w/o penet thor cavity, init"
+  },
+  {
+    "id": 81,
+    "name": "Coffee Cup 16oz Foam",
+    "cost": 577,
+    "description": "Unspecified superficial injury of other fingers"
+  },
+  {
+    "id": 82,
+    "name": "Soup - Campbells Beef Noodle",
+    "cost": 934,
+    "description": "Pathological dislocation of knee, not elsewhere classified"
+  },
+  {
+    "id": 83,
+    "name": "Wine - Delicato Merlot",
+    "cost": 552,
+    "description": "Toxic effect of petroleum products, undetermined, subs"
+  },
+  {
+    "id": 84,
+    "name": "Drambuie",
+    "cost": 811,
+    "description": "Oth private fix-wing arcrft fire injuring occupant, sequela"
+  },
+  {
+    "id": 85,
+    "name": "Wine - Red, Gallo, Merlot",
+    "cost": 915,
+    "description": "Unspecified open wound, left knee, subsequent encounter"
+  },
+  {
+    "id": 86,
+    "name": "Pasta - Canelloni",
+    "cost": 555,
+    "description": "Placentitis, unspecified trimester, fetus 5"
+  },
+  {
+    "id": 87,
+    "name": "Veal Inside - Provimi",
+    "cost": 911,
+    "description": "Unspecified superficial injury of right great toe, sequela"
+  },
+  {
+    "id": 88,
+    "name": "Chocolate - Dark Callets",
+    "cost": 291,
+    "description": "Disp fx of proximal phalanx of r idx fngr, init for opn fx"
+  },
+  {
+    "id": 89,
+    "name": "Aspic - Light",
+    "cost": 425,
+    "description": "Nondisp intertroch fx r femur, init for opn fx type 3A/B/C"
+  },
+  {
+    "id": 90,
+    "name": "Juice - Orange",
+    "cost": 596,
+    "description": "Abrasion of other finger"
+  },
+  {
+    "id": 91,
+    "name": "Island Oasis - Lemonade",
+    "cost": 522,
+    "description": "Toxic effects of unspecified corrosive substance"
+  },
+  {
+    "id": 92,
+    "name": "Flour - All Purpose",
+    "cost": 736,
+    "description": "Legal intervnt involving unsp blunt objects, suspect injured"
+  },
+  {
+    "id": 93,
+    "name": "V8 Pet",
+    "cost": 224,
+    "description": "Underdosing of antigonadtr/antiestr/antiandrg, NEC, subs"
+  },
+  {
+    "id": 94,
+    "name": "Pasta - Rotini, Dry",
+    "cost": 558,
+    "description": "Burns of 40-49% of body surfc w 0% to 9% third degree burns"
+  },
+  {
+    "id": 95,
+    "name": "Cheese - Cheddar, Medium",
+    "cost": 198,
+    "description": "Other specified rheumatic heart diseases"
+  },
+  {
+    "id": 96,
+    "name": "Lime Cordial - Roses",
+    "cost": 204,
+    "description": "Displaced spiral fracture of shaft of right tibia"
+  },
+  {
+    "id": 97,
+    "name": "Lamb - Whole Head Off,nz",
+    "cost": 165,
+    "description": "Adverse effect of other bacterial vaccines, subs encntr"
+  },
+  {
+    "id": 98,
+    "name": "Sauce - Oyster",
+    "cost": 665,
+    "description": "Laceration with foreign body of anus, subsequent encounter"
+  },
+  {
+    "id": 99,
+    "name": "Napkin White",
+    "cost": 448,
+    "description": "War op w explosn of sea-based artlry shell, civ, sequela"
+  },
+  {
+    "id": 100,
+    "name": "Crab - Soft Shell",
+    "cost": 607,
+    "description": "Driver of military vehicle injured in traf, sequela"
+  }
+]

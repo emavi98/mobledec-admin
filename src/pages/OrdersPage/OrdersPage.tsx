@@ -25,7 +25,7 @@ export const OrdersPage = () => {
         <div className="mx-auto max-w-7xl py-6 sm:px-6 lg:px-8">
           <div className="flex justify-between">
             <div className="flex gap-4">
-              <OrderDialog btnText="Crear pedido" />
+              <OrderDialog />
               <Input
                 className="w-[200px]"
                 placeholder="Buscar..."
