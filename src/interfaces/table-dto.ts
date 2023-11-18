@@ -8,12 +8,3 @@ export interface Order {
   state: string;
   subRows?: Order[];
 }
-
-export interface Product {
-  cost: number;
-  description: string;
-  id: number;
-  name: string;
-  quantity?: number;
-  subTotal?: number;
-}

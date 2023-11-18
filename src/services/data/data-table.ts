@@ -33,3 +33,26 @@ export const columnsOrder = <ColumnDef<Order>[]>[
     accessorKey: "state",
   },
 ];
+
+export const columnsProduct = [
+  {
+    header: "sku",
+    accessorKey: "sku",
+  },
+  {
+    header: "Producto",
+    accessorKey: "product_name",
+  },
+  {
+    header: "Precio",
+    accessorKey: "cost",
+  },
+  {
+    header: "Días de entrega",
+    accessorKey: "delivery_days",
+  },
+  {
+    header: "Minutos de montaje",
+    accessorKey: "minutes_mount",
+  },
+];

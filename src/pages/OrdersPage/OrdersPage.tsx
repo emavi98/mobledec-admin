@@ -7,11 +7,19 @@ import { Order } from "@/interfaces/table-dto";
 import mData from "@/MOCK_DATA.json";
 import { columnsOrder } from "@/services/data/data-table";
 import OrderDialog from "@/components/Dialogs/OrderDialog";
+import { useAppDispatch } from "@/store/hooks";
+import { showDialog } from "@/store/features/uiSlice";
 
 export const OrdersPage = () => {
   const [filtering, setFiltering] = useState("");
 
   const data: Order[] = useMemo(() => mData, []);
+
+  const dispatch = useAppDispatch();
+
+  const openDialogInfo = () => {
+    dispatch(showDialog(true));
+  };
   return (
     <>
       <header className="bg-white shadow">
@@ -44,6 +52,7 @@ export const OrdersPage = () => {
               setFiltering={setFiltering}
               data={data}
               columns={columnsOrder}
+              tdFn={openDialogInfo}
             />
           </div>
         </div>

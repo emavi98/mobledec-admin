@@ -1,6 +1,8 @@
 import { Button } from "../ui/button";
+import { Input } from "../ui/input";
 import { Product } from "@/interfaces/table-dto";
 import { useEffect, useState } from "react";
+import { formatPrice } from "@/lib/utils";
 
 const UpDialog: React.FC<{
   product: Product;
@@ -29,12 +31,13 @@ const UpDialog: React.FC<{
   };
 
   const fillProducts = () => {
-    const productIndex = products.findIndex((item) => item?.id);
+    const productIndex = products.findIndex((item) => item?.sku);
     const newProduct = {
+      sku: product?.sku,
+      product_name: product?.product_name,
       cost: product?.cost,
-      description: product?.description,
-      id: product?.id,
-      name: product?.name,
+      minutes_mount: product?.minutes_mount,
+      delivery_days: product?.delivery_days,
       quantity,
       subTotal,
     };
@@ -43,47 +46,85 @@ const UpDialog: React.FC<{
     } else {
       setProducts((prevProducts) => {
         return prevProducts
-          .filter((item) => item.id !== product?.id)
+          .filter((item) => item.sku !== product?.sku)
           .concat(newProduct);
       });
     }
   };
 
   return (
-    <div className="absolute z-[100] w-[100%] h-[100%] top-0 left-0 m-auto bg-slate-50 rounded-md">
-      <div>
+    <div className="absolute z-[100] w-full h-full top-0 left-0 rounded-md flex items-center justify-center">
+      <div className="w-full h-full absolute top-0 left-0 z-10 backdrop-blur-sm"></div>
+      <div className="w-[80%] h-[80%] m-auto bg-slate-50 z-50 shadow-md rounded-md">
         <div className="p-2 flex flex-col gap-2">
-          <p className="text text-base">
-            <span className="font-bold">Producto: </span>
-            {product?.name}
-          </p>
-          <p className="text text-base">
-            <span className="font-bold">Descripción:</span>{" "}
-            {product?.description}
-          </p>
-          <p className="text text-base">
-            <span className="font-bold">Precio unitario:</span>{" "}
-            {new Intl.NumberFormat("de-DE", {
-              style: "currency",
-              currency: "EUR",
-            }).format(priceProduct)}
-          </p>
-          <div className="flex gap-3">
-            <p className="font-bold">Cantidad:</p>
-            <button onClick={removeProduct}>-</button>
-            <span>{quantity}</span>
-            <button onClick={addProduct}>+</button>
+          <h2 className="text-center">Añadir Producto</h2>
+          <div className="flex gap-2 items-center">
+            <p className="text text-base">
+              <span className="font-bold">Producto: </span>
+            </p>
+            <Input
+              type="text"
+              placeholder={product?.product_name}
+              className="flex items-center text-center h-auto p-2 bg-transparent border-slate-800 outline-none focus-visible:ring-0 placeholder:text placeholder:text-base placeholder:text-black"
+            />
           </div>
-          <p className="text text-base">
-            <span className="font-bold">Subtotal: </span>
-            {new Intl.NumberFormat("de-DE", {
-              style: "currency",
-              currency: "EUR",
-            }).format(subTotal)}
-          </p>
+          <div className="flex gap-4 items-center">
+            <div className="flex gap-2 items-center">
+              <p className="text text-base">
+                <span className="font-bold">Precio unitario:</span>{" "}
+              </p>
+              <Input
+                type="number"
+                placeholder={priceProduct.toString() + "€"}
+                className="flex items-center text-center max-w-[75px] h-auto p-2 bg-transparent border-slate-800 outline-none focus-visible:ring-0 placeholder:text placeholder:text-base placeholder:text-black"
+              />
+            </div>
+          </div>
+          <div className="flex gap-4 items-center">
+            <p className="text text-base">
+              <span className="font-bold">Tiempo de entrega:</span>{" "}
+              {product?.delivery_days} días
+            </p>
+          </div>
+          <div className="flex gap-4 items-center">
+            {product?.minutes_mount && (
+              <p className="text text-base">
+                <span className="font-bold">Minutos de montaje:</span>{" "}
+                {product?.minutes_mount}
+              </p>
+            )}
+          </div>
+          <div className="flex gap-4 items-center">
+            <div className="flex gap-3">
+              <p className="font-bold">Cantidad:</p>
+              <button
+                onClick={removeProduct}
+                className="text-red-700 font-bold"
+              >
+                -
+              </button>
+              <span>{quantity}</span>
+              <button onClick={addProduct} className="text-green-700 font-bold">
+                +
+              </button>
+            </div>
+          </div>
+          <div className="flex gap-4 items-center">
+            <p className="text text-base">
+              <span className="font-bold">Subtotal: </span>
+              {formatPrice(subTotal)}
+            </p>
+          </div>
         </div>
-
-        <div className="flex items-center justify-center mt-4">
+        <div className="flex gap-4 items-center justify-center mt-4">
+          <Button
+            className="min-w-[200px]"
+            onClick={() => {
+              onShow(false);
+            }}
+          >
+            Cancelar
+          </Button>
           <Button
             className="min-w-[200px]"
             onClick={() => {
@@ -91,7 +132,7 @@ const UpDialog: React.FC<{
               fillProducts();
             }}
           >
-            Ok
+            Agregar
           </Button>
         </div>
       </div>
