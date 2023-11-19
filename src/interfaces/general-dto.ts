@@ -34,3 +34,8 @@ export interface PDFModel extends OrderModel {
   note?: string;
   send?: boolean;
 }
+
+export type InfoProp = {
+  info?: OrderModel;
+  setInfo: React.Dispatch<React.SetStateAction<OrderModel>>;
+};

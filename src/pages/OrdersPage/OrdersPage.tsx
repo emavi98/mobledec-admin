@@ -1,14 +1,14 @@
 import { useState, useMemo } from "react";
 
-import Table from "@/components/Table/Table";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Order } from "@/interfaces/table-dto";
-import mData from "@/MOCK_DATA.json";
 import { columnsOrder } from "@/services/data/data-table";
-import OrderDialog from "@/components/Dialogs/OrderDialog";
 import { useAppDispatch } from "@/store/hooks";
 import { showDialog } from "@/store/features/uiSlice";
+import Table from "@/components/Table/Table";
+import OrderDialog from "@/components/Dialogs/OrderDialog/OrderDialog";
+import mData from "@/MOCK_DATA.json";
 
 export const OrdersPage = () => {
   const [filtering, setFiltering] = useState("");

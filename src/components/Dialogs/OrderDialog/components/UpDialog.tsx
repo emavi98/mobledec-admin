@@ -1,24 +1,27 @@
-import { Button } from "../ui/button";
-import { Input } from "../ui/input";
-import { Product } from "@/interfaces/table-dto";
 import { useEffect, useState } from "react";
+
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Product } from "@/interfaces/general-dto";
 import { formatPrice } from "@/lib/utils";
 
-const UpDialog: React.FC<{
+type UpProps = {
   product: Product;
   products: Product[];
   price: number;
   onShow: (value: boolean) => void;
   setProducts: React.Dispatch<React.SetStateAction<Product[]>>;
-}> = ({ product, products, price: priceProduct, onShow, setProducts }) => {
+};
+
+const UpDialog: React.FC<UpProps> = ({
+  product,
+  products,
+  price: priceProduct,
+  onShow,
+  setProducts,
+}) => {
   const [quantity, setQuantity] = useState(1);
   const [subTotal, setSubTotal] = useState(0);
-
-  useEffect(() => {
-    if (product?.cost) {
-      setSubTotal(product?.cost * quantity);
-    }
-  }, [quantity]);
 
   const addProduct = () => {
     setQuantity((prevQuantity) => prevQuantity + 1);
@@ -51,6 +54,12 @@ const UpDialog: React.FC<{
       });
     }
   };
+
+  useEffect(() => {
+    if (product?.cost) {
+      setSubTotal(product?.cost * quantity);
+    }
+  }, [quantity]);
 
   return (
     <div className="absolute z-[100] w-full h-full top-0 left-0 rounded-md flex items-center justify-center">
