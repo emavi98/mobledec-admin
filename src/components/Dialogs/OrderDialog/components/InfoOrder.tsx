@@ -7,6 +7,7 @@ import { Input } from "@/components/ui/input";
 
 import UpDialog from "@/components/Dialogs/OrderDialog/components/UpDialog";
 import Table from "@/components/Table/Table";
+
 import productD from "@/MOCK_DATA_PRODUCTS.json";
 
 const InfoOrder: React.FC<InfoProp> = ({ setInfo }) => {

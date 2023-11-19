@@ -19,23 +19,21 @@ const InfoPrice: React.FC<InfoProp> = ({ info, setInfo }) => {
 
   const assignPayment = (ev: React.ChangeEvent<HTMLInputElement>) => {
     const value = +ev.target.value;
-    if (info && info.total_shipping && value <= +info.total_shipping) {
-      setInfo((prevInfo) => {
-        if (prevInfo.total_shipping && value) {
-          return {
-            ...prevInfo,
-            payment: value,
-            pending_payment: +prevInfo.total_shipping - value,
-          };
-        }
-        return prevInfo;
-      });
-      setPaymentValue(paymentValue);
-    }
+    setInfo((prevInfo) => {
+      if (prevInfo.total_shipping && value) {
+        return {
+          ...prevInfo,
+          payment: value,
+          pending_payment: +prevInfo.total_shipping - value,
+        };
+      }
+      return prevInfo;
+    });
+    setPaymentValue(paymentValue);
   };
 
   const setInstallment = (ev: React.ChangeEvent<HTMLInputElement>) => {
-    const value = ev.target.value;
+    const value = +ev.target.value;
     setInfo((prevInfo) => ({ ...prevInfo, installment: value }));
   };
 
