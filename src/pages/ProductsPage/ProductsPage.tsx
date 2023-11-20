@@ -6,7 +6,7 @@ import { Input } from "@/components/ui/input";
 import { Order } from "@/interfaces/table-dto";
 import mData from "@/MOCK_DATA.json";
 import { columnsOrder } from "@/services/data/data-table";
-import ProductDialog from "@/components/Dialogs/ProductDialog";
+import ProductDialog from "@/components/Dialogs/ProductDialog/ProductDialog";
 
 export const ProductsPage = () => {
   const [filtering, setFiltering] = useState("");
