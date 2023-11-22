@@ -1,3 +1,4 @@
+import React, { useState, useMemo } from "react";
 import {
   useReactTable,
   flexRender,
@@ -6,35 +7,25 @@ import {
   getSortedRowModel,
   getFilteredRowModel,
 } from "@tanstack/react-table";
-import "./Table.css";
-import React, { useState, useMemo } from "react";
 
-interface TableProps {
-  filtering?: string;
-  setFiltering?: React.Dispatch<React.SetStateAction<string>>;
-  data: any;
-  columns: any;
-  tdFn?: () => void;
-  className?: {
-    table: string;
-    thead: string;
-    th: string;
-    tr: string;
-    td: string;
-  };
-  children?: any;
-  thRow?: string[];
-}
+import "./Table.css";
+import {
+  TableProps,
+  TableActionsProps,
+  TableRow,
+  TableTypePagination,
+} from "@/interfaces/table-dto";
 
 const Table: React.FC<TableProps> = ({
   filtering,
   setFiltering,
   data,
   columns,
-  tdFn,
   className,
   children,
   thRow,
+  editRowFn,
+  removeRowFn,
 }) => {
   const [{ pageIndex, pageSize }, setPagination] = useState({
     pageIndex: 0,
@@ -65,8 +56,14 @@ const Table: React.FC<TableProps> = ({
     onGlobalFilterChange: setFiltering,
   });
 
-  const tdHandler = () => {
-    tdFn && tdFn();
+  const editHandler = (ev: React.MouseEvent<HTMLParagraphElement>) => {
+    const id = (ev.target as HTMLElement).dataset.id;
+    id && editRowFn(+id);
+  };
+
+  const removeHandler = (ev: React.MouseEvent<HTMLParagraphElement>) => {
+    const id = (ev.target as HTMLElement).dataset.id;
+    id && removeRowFn(+id);
   };
 
   return (
@@ -88,6 +85,7 @@ const Table: React.FC<TableProps> = ({
                 </th>
               ))}
               {thRow && thRow.map((item) => <th key={item}>{item}</th>)}
+              <th key={`Acciones ${headerGroup.id}`}>Acciones</th>
             </tr>
           ))}
         </thead>
@@ -99,7 +97,6 @@ const Table: React.FC<TableProps> = ({
                   className={`text-center ${
                     className ? className.tr : "cursor-pointer"
                   }`}
-                  onClick={tdHandler}
                 >
                   {row.getVisibleCells().map((cell) => (
                     <td
@@ -112,6 +109,11 @@ const Table: React.FC<TableProps> = ({
                       )}
                     </td>
                   ))}
+                  <TableActions
+                    row={row as TableRow}
+                    editHandler={editHandler}
+                    removeHandler={removeHandler}
+                  />
                 </tr>
               ))
             : Object.keys(table.getRowModel().rowsById).map((key) => {
@@ -122,7 +124,6 @@ const Table: React.FC<TableProps> = ({
                     className={`text-center ${
                       className ? className.tr : "cursor-pointer"
                     }`}
-                    onClick={tdHandler}
                   >
                     {row.getVisibleCells().map((cell) => (
                       <td
@@ -135,48 +136,110 @@ const Table: React.FC<TableProps> = ({
                         )}
                       </td>
                     ))}
-                    {children}
+                    {React.Children.map(children, (child) => {
+                      return React.cloneElement(child, {
+                        product: row
+                          .getVisibleCells()
+                          .map((cell) => cell.getContext().row.original),
+                      });
+                    })}
+                    <TableActions
+                      row={row as TableRow}
+                      editHandler={editHandler}
+                      removeHandler={removeHandler}
+                    />
                   </tr>
                 );
               })}
         </tbody>
       </table>
       {pageSize >= 2 && (
-        <div className="flex justify-center gap-4">
-          <button
-            className="border border-slate-600 p-2 rounded-sm hover:bg-slate-700 hover:text-white transition-all disabled:opacity-50"
-            onClick={() => table.setPageIndex(0)}
-          >
-            Primera página
-          </button>
-          <button
-            className="border border-slate-600 p-2 rounded-sm hover:bg-slate-700 hover:text-white transition-all disabled:opacity-50"
-            disabled={!table.getCanPreviousPage()}
-            onClick={() => table.previousPage()}
-          >
-            Página anterior
-          </button>
-          <div className="flex items-center">
-            <span>
-              Pagina {table.getState().pagination.pageIndex + 1} de{" "}
-              {table.getPageCount()}
-            </span>
-          </div>
-          <button
-            className="border border-slate-600 p-2 rounded-sm hover:bg-slate-700 hover:text-white transition-all disabled:opacity-50"
-            disabled={!table.getCanNextPage()}
-            onClick={() => table.nextPage()}
-          >
-            Página siguiente
-          </button>
-          <button
-            className="border border-slate-600 p-2 rounded-sm hover:bg-slate-700 hover:text-white transition-all disabled:opacity-50"
-            onClick={() => table.setPageIndex(table.getPageCount() - 1)}
-          >
-            Última página
-          </button>
-        </div>
+        <TablePagination table={table as TableTypePagination} />
       )}
+    </div>
+  );
+};
+
+const TableActions: React.FC<TableActionsProps> = ({
+  row,
+  editHandler,
+  removeHandler,
+}) => {
+  return (
+    <td className="px-6 py-4">
+      <div className="flex items-center gap-2">
+        <p
+          className="text-blue-600 cursor-pointer"
+          data-id={
+            (
+              row
+                .getVisibleCells()
+                .map((cell) => cell.getContext().row.original)[0] as {
+                sku: string;
+              }
+            )?.sku ?? "default"
+          }
+          onClick={editHandler}
+        >
+          Editar
+        </p>
+        <p
+          className="text-red-600 cursor-pointer"
+          data-id={
+            (
+              row
+                .getVisibleCells()
+                .map((cell) => cell.getContext().row.original)[0] as {
+                sku: string;
+              }
+            )?.sku ?? "default"
+          }
+          onClick={removeHandler}
+        >
+          Eliminar
+        </p>
+      </div>
+    </td>
+  );
+};
+
+const TablePagination: React.FC<{ table: TableTypePagination }> = ({
+  table,
+}) => {
+  return (
+    <div className="flex justify-center gap-4">
+      <button
+        className="border border-slate-600 p-2 rounded-sm hover:bg-slate-700 hover:text-white transition-all disabled:opacity-50"
+        onClick={() => table.setPageIndex(0)}
+      >
+        Primera página
+      </button>
+      <button
+        className="border border-slate-600 p-2 rounded-sm hover:bg-slate-700 hover:text-white transition-all disabled:opacity-50"
+        disabled={!table.getCanPreviousPage()}
+        onClick={() => table.previousPage()}
+      >
+        Página anterior
+      </button>
+      <div className="flex items-center">
+        <span>
+          Pagina {table.getState().pagination.pageIndex + 1} de{" "}
+          {table.getPageCount()}
+        </span>
+      </div>
+      <button
+        className="border border-slate-600 p-2 rounded-sm hover:bg-slate-700 hover:text-white transition-all disabled:opacity-50"
+        disabled={!table.getCanNextPage()}
+        onClick={() => table.nextPage()}
+      >
+        Página siguiente
+      </button>
+      <button
+        className="border border-slate-600 p-2 rounded-sm hover:bg-slate-700 hover:text-white transition-all disabled:opacity-50"
+        onClick={() => table.setPageIndex(table.getPageCount() - 1)}
+      >
+        Última página
+      </button>
     </div>
   );
 };

@@ -4,29 +4,29 @@ import Select, { SingleValue } from "react-select";
 import { InfoProp, Product } from "@/interfaces/general-dto";
 import { columnsProduct } from "@/domain/data/data-table";
 
-import { InputSH, Table } from "@/components";
-import UpDialog from "./UpDialog";
+import { useAppDispatch, useAppSelector } from "@/store/hooks";
+import { setProductDialog, removeProduct } from "@/store/Slices/orderSlice";
+
+import { Table } from "@/components";
+import ProductDialog from "./ProductDialog";
+import ProductTable from "./ProductTable";
 
 import productD from "@/MOCK_DATA_PRODUCTS.json";
+import { formatPrice } from "@/lib/utils";
 
-const InfoOrder: React.FC<InfoProp> = ({ setInfo }) => {
-  const [product, setProduct] = useState<Product>();
-  const [products, setProducts] = useState<Product[]>([]);
+const InfoOrder: React.FC<InfoProp> = ({ info, setInfo }) => {
+  const dispatch = useAppDispatch();
+  const orderList = useAppSelector(
+    (state) => state.orderSliceReducer.orderList
+  );
   const [showProduct, setShowProduct] = useState(false);
-  const [priceProduct, setPriceProduct] = useState(0);
 
   const productData = productD.map((item) => ({
     value: item.product_name,
     label: item.product_name,
   }));
 
-  const declareProduct = (product: Product) => {
-    setShowProduct(true);
-    setProduct(product);
-    setPriceProduct(product.cost);
-  };
-
-  const addProduct = (
+  const openProductDialog = (
     newValue: SingleValue<{ value: string; label: string }> | null
   ) => {
     if (newValue) {
@@ -35,35 +35,29 @@ const InfoOrder: React.FC<InfoProp> = ({ setInfo }) => {
         (item) => item.product_name === selectedValue
       );
 
-      declareProduct(productFiltered);
+      dispatch(setProductDialog(productFiltered));
+      setShowProduct(true);
     }
   };
 
-  const editProduct = (ev: React.MouseEvent<HTMLParagraphElement>) => {
-    const productId = ev.currentTarget.getAttribute("data-id");
-    if (productId) {
-      const productSelected = products.find((item) => item.sku === +productId);
-      declareProduct(productSelected as Product);
-    }
+  const editRowTable = (id: number) => {
+    const selectedProduct = orderList.filter((item) => item.sku === id)[0];
+    dispatch(setProductDialog(selectedProduct));
+    setShowProduct(true);
   };
 
-  const eliminateProduct = (ev: React.MouseEvent<HTMLParagraphElement>) => {
-    const productId = ev.currentTarget.getAttribute("data-id");
-    if (productId) {
-      const filteredProducts = products.filter(
-        (item) => item.sku !== +productId
-      );
-      setProducts(filteredProducts);
-    }
+  const removeRowTable = (id: number) => {
+    const selectedProduct = orderList.filter((item) => item.sku === id)[0];
+    dispatch(removeProduct(selectedProduct));
   };
 
   useEffect(() => {
-    const total = products.reduce(
+    const total = orderList.reduce(
       (acc: number, cur: Product) => cur.subTotal! + acc,
       0
     );
-    setInfo((prevInfo) => ({ ...prevInfo, total, products }));
-  }, [products]);
+    setInfo((prevInfo) => ({ ...prevInfo, total, orderList }));
+  }, [orderList]);
 
   return (
     <>
@@ -72,15 +66,7 @@ const InfoOrder: React.FC<InfoProp> = ({ setInfo }) => {
           showProduct && "min-h-[500px]"
         }`}
       >
-        {showProduct && (
-          <UpDialog
-            onShow={setShowProduct}
-            product={product as Product}
-            products={products}
-            price={priceProduct}
-            setProducts={setProducts}
-          />
-        )}
+        {showProduct && <ProductDialog onShow={setShowProduct} />}
         <h2>Datos de pedido*</h2>
         <div className="mt-8">
           <Select
@@ -88,10 +74,10 @@ const InfoOrder: React.FC<InfoProp> = ({ setInfo }) => {
             options={productData}
             className="basic-multi-select"
             classNamePrefix="Busca..."
-            onChange={addProduct}
+            onChange={openProductDialog}
           />
         </div>
-        {products.length > 0 && (
+        {orderList.length > 0 && (
           <div id="results" className="mt-4 flex flex-col gap-2">
             <Table
               className={{
@@ -103,45 +89,20 @@ const InfoOrder: React.FC<InfoProp> = ({ setInfo }) => {
                 tr: "cursor-default",
                 td: "px-6 py-4",
               }}
-              data={products}
+              data={orderList}
               columns={columnsProduct}
-              thRow={["cantidad", "subtotal", "pedido", "stock", "acciones"]}
+              thRow={["cantidad", "subtotal", "pedido", "stock"]}
+              editRowFn={editRowTable}
+              removeRowFn={removeRowTable}
             >
-              <React.Fragment key={product?.sku}>
-                <td className="px-6 py-4">{product?.quantity}</td>
-                <td className="px-6 py-4">{product?.subTotal}</td>
-                <td className="px-6 py-4">
-                  <div className="flex justify-center items-center gap-2">
-                    <InputSH type="checkbox" id="pedido" className="w-[20px]" />
-                    <label htmlFor="pedido">Hacer pedido?</label>
-                  </div>
-                </td>
-                <td className="px-6 py-4">
-                  <div className="flex justify-center items-center gap-2">
-                    <InputSH type="checkbox" id="pedido" className="w-[20px]" />
-                    <label htmlFor="pedido">Rebajar Stock?</label>
-                  </div>
-                </td>
-                <td className="px-6 py-4">
-                  <div className="flex justify-center items-center gap-2">
-                    <p
-                      className="text-blue-600 cursor-pointer"
-                      onClick={editProduct}
-                      data-id={product?.sku}
-                    >
-                      Editar
-                    </p>
-                    <p
-                      className="text-red-600 cursor-pointer"
-                      onClick={eliminateProduct}
-                      data-id={product?.sku}
-                    >
-                      Eliminar
-                    </p>
-                  </div>
-                </td>
-              </React.Fragment>
+              <ProductTable />
             </Table>
+            {info && info.total ? (
+              <p>
+                <span className="font-bold">Total:</span>{" "}
+                {formatPrice(+info?.total as number)}
+              </p>
+            ) : null}
           </div>
         )}
       </div>

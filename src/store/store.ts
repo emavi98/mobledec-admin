@@ -1,11 +1,16 @@
 import { configureStore } from "@reduxjs/toolkit";
 //import counterReducer from './features/counterSlice';
-import uiSliceReducer from "./Slices/dialogSlice";
+import dialogSliceReducer from "./Slices/dialogSlice";
+import orderSliceReducer from "./Slices/orderSlice";
 import { userApi } from "../services/userApi";
 import { setupListeners } from "@reduxjs/toolkit/dist/query";
 
 export const store = configureStore({
-  reducer: { uiSliceReducer, [userApi.reducerPath]: userApi.reducer },
+  reducer: {
+    dialogSliceReducer,
+    orderSliceReducer,
+    [userApi.reducerPath]: userApi.reducer,
+  },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware().concat([userApi.middleware]),
 });

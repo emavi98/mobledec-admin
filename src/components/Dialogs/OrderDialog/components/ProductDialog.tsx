@@ -1,40 +1,35 @@
 import { useEffect, useState } from "react";
 
-import { Product } from "@/interfaces/general-dto";
+import { useAppDispatch, useAppSelector } from "@/store/hooks";
+import { addProduct } from "@/store/Slices/orderSlice";
+
 import { formatPrice } from "@/lib/utils";
 
 import { Button, InputSH } from "@/components";
 
 type UpProps = {
-  product: Product;
-  products: Product[];
-  price: number;
   onShow: (value: boolean) => void;
-  setProducts: React.Dispatch<React.SetStateAction<Product[]>>;
 };
 
-const UpDialog: React.FC<UpProps> = ({
-  product,
-  products,
-  price: priceProduct,
-  onShow,
-  setProducts,
-}) => {
+const ProductDialog: React.FC<UpProps> = ({ onShow }) => {
+  const dispatch = useAppDispatch();
+  const { productDialog: product } = useAppSelector(
+    (state) => state.orderSliceReducer
+  );
   const [quantity, setQuantity] = useState(1);
   const [subTotal, setSubTotal] = useState(0);
 
-  const addProduct = () => {
+  const addQuantityProduct = () => {
     setQuantity((prevQuantity) => prevQuantity + 1);
   };
 
-  const removeProduct = () => {
+  const removeQuantityProduct = () => {
     if (quantity > 1) {
       setQuantity((prevQuantity) => prevQuantity - 1);
     }
   };
 
-  const fillProducts = () => {
-    const productIndex = products.findIndex((item) => item?.sku);
+  const addProductOrderList = () => {
     const newProduct = {
       sku: product?.sku,
       product_name: product?.product_name,
@@ -44,15 +39,7 @@ const UpDialog: React.FC<UpProps> = ({
       quantity,
       subTotal,
     };
-    if (productIndex === -1) {
-      setProducts((prevProducts) => [...prevProducts, newProduct]);
-    } else {
-      setProducts((prevProducts) => {
-        return prevProducts
-          .filter((item) => item.sku !== product?.sku)
-          .concat(newProduct);
-      });
-    }
+    dispatch(addProduct(newProduct));
   };
 
   useEffect(() => {
@@ -73,7 +60,7 @@ const UpDialog: React.FC<UpProps> = ({
             </p>
             <InputSH
               type="text"
-              placeholder={product?.product_name}
+              placeholder={product.product_name}
               className="flex items-center text-center h-auto p-2 bg-transparent border-slate-800 outline-none focus-visible:ring-0 placeholder:text placeholder:text-base placeholder:text-black"
             />
           </div>
@@ -84,7 +71,7 @@ const UpDialog: React.FC<UpProps> = ({
               </p>
               <InputSH
                 type="number"
-                placeholder={priceProduct.toString() + "€"}
+                placeholder={product?.cost.toString() + "€"}
                 className="flex items-center text-center max-w-[75px] h-auto p-2 bg-transparent border-slate-800 outline-none focus-visible:ring-0 placeholder:text placeholder:text-base placeholder:text-black"
               />
             </div>
@@ -92,14 +79,14 @@ const UpDialog: React.FC<UpProps> = ({
           <div className="flex gap-4 items-center">
             <p className="text text-base">
               <span className="font-bold">Tiempo de entrega:</span>{" "}
-              {product?.delivery_days} días
+              {product.delivery_days} días
             </p>
           </div>
           <div className="flex gap-4 items-center">
-            {product?.minutes_mount && (
+            {product.minutes_mount && (
               <p className="text text-base">
                 <span className="font-bold">Minutos de montaje:</span>{" "}
-                {product?.minutes_mount}
+                {product.minutes_mount}
               </p>
             )}
           </div>
@@ -107,13 +94,16 @@ const UpDialog: React.FC<UpProps> = ({
             <div className="flex gap-3">
               <p className="font-bold">Cantidad:</p>
               <button
-                onClick={removeProduct}
+                onClick={removeQuantityProduct}
                 className="text-red-700 font-bold"
               >
                 -
               </button>
               <span>{quantity}</span>
-              <button onClick={addProduct} className="text-green-700 font-bold">
+              <button
+                onClick={addQuantityProduct}
+                className="text-green-700 font-bold"
+              >
                 +
               </button>
             </div>
@@ -138,7 +128,7 @@ const UpDialog: React.FC<UpProps> = ({
             className="min-w-[200px]"
             onClick={() => {
               onShow(false);
-              fillProducts();
+              addProductOrderList();
             }}
           >
             Agregar
@@ -149,4 +139,4 @@ const UpDialog: React.FC<UpProps> = ({
   );
 };
 
-export default UpDialog;
+export default ProductDialog;

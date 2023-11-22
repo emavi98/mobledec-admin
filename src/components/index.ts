@@ -7,7 +7,7 @@ export { default as InfoClient } from "./Dialogs/OrderDialog/components/InfoClie
 export { default as InfoOrder } from "./Dialogs/OrderDialog/components/InfoOrder";
 export { default as InfoPrice } from "./Dialogs/OrderDialog/components/InfoPrice";
 export { default as InfoShipping } from "./Dialogs/OrderDialog/components/InfoShipping";
-export { default as UpDialog } from "./Dialogs/OrderDialog/components/UpDialog";
+export { default as UpDialog } from "./Dialogs/OrderDialog/components/ProductDialog";
 export { default as ProductDialog } from "./Dialogs/ProductDialog/ProductDialog";
 export { default as InfoBasic } from "./Dialogs/ProductDialog/components/InfoBasic";
 export { default as InfoCategories } from "./Dialogs/ProductDialog/components/InfoCategories";

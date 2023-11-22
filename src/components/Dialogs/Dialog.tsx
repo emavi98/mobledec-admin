@@ -15,7 +15,7 @@ type DialogProps = {
 };
 
 const Dialog: React.FC<DialogProps> = ({ textBtn, children }) => {
-  const dialog = useAppSelector((state) => state.uiSliceReducer.dialog);
+  const dialog = useAppSelector((state) => state.dialogSliceReducer.dialog);
   const dispatch = useAppDispatch();
 
   const closePopup = () => {

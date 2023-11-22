@@ -4,6 +4,7 @@ export interface Product {
   cost: number;
   delivery_days: number;
   minutes_mount: number;
+  id?: number;
   quantity?: number;
   subTotal?: number;
 }
