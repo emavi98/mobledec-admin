@@ -1,15 +1,16 @@
 import { useState } from "react";
 
 import { InfoProp } from "@/interfaces/general-dto";
+import { formatPrice } from "@/lib/utils";
+
 import {
-  Select as SelectSH,
+  SelectSH,
   SelectContent,
   SelectItem,
   SelectTrigger,
   SelectValue,
-} from "@/components/ui/select";
-import { Input } from "@/components/ui/input";
-import { formatPrice } from "@/lib/utils";
+  InputSH,
+} from "@/components";
 
 const InfoShipping: React.FC<InfoProp> = ({ info, setInfo }) => {
   const [priceShipping, setPriceShipping] = useState(0);
@@ -60,7 +61,7 @@ const InfoShipping: React.FC<InfoProp> = ({ info, setInfo }) => {
             <SelectItem value="retirada">Retirada</SelectItem>
           </SelectContent>
         </SelectSH>
-        <Input
+        <InputSH
           type="number"
           placeholder="Precio Manualmente"
           onChange={priceInputChange}
@@ -68,7 +69,7 @@ const InfoShipping: React.FC<InfoProp> = ({ info, setInfo }) => {
         />
       </div>
       <div className="my-4">
-        <Input
+        <InputSH
           placeholder="2 colchones"
           className="min-h-[75px]"
           onBlur={assignShippingDescription}

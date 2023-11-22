@@ -1,5 +1,4 @@
-import Accordion from "@/components/Atomic/Accordion";
-import { Input } from "@/components/ui/input";
+import { InputSH, Accordion } from "@/components";
 
 const InfoDimensions = () => {
   return (
@@ -7,14 +6,14 @@ const InfoDimensions = () => {
       <div className="w-[97.5%] m-auto border p-4 rounded-md mb-8">
         <div className="my-4">
           <label className="block mb-2">Peso</label>
-          <Input type="text" />
+          <InputSH type="text" />
         </div>
         <div className="my-4">
           <label className="block mb-2">Dimensiones</label>
-          <Input type="text" />
+          <InputSH type="text" />
         </div>
         <div className="my-4 flex gap-2 items-center">
-          <Input
+          <InputSH
             type="checkbox"
             className="inline-block w-[20px]"
             id="reviews"

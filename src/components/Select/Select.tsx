@@ -1,5 +1,5 @@
 import {
-  Select as SelectSH,
+  SelectSH,
   SelectContent,
   SelectItem,
   SelectTrigger,

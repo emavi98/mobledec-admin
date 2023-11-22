@@ -1,6 +1,4 @@
-import Accordion from "@/components/Atomic/Accordion";
-import Select from "@/components/Atomic/Select";
-import { Input } from "@/components/ui/input";
+import { Accordion, Select, InputSH } from "@/components";
 
 const InfoCategories = () => {
   const categories = ["categorie"];
@@ -10,7 +8,7 @@ const InfoCategories = () => {
         //TODO input text tag
         <div className="my-4">
           <label className="block mb-2">ID's Relacionados</label>
-          <Input type="text" />
+          <InputSH type="text" />
         </div>
         //TODO select tipo tag
         <div className="my-4">

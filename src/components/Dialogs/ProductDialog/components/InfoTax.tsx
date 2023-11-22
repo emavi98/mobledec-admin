@@ -1,6 +1,4 @@
-import Accordion from "@/components/Atomic/Accordion";
-import Select from "@/components/Atomic/Select";
-import { Input } from "@/components/ui/input";
+import { InputSH, Accordion, Select } from "@/components";
 
 const InfoTax = () => {
   const taxItems = ["21%", "10%", "4%", "0%"];
@@ -18,14 +16,18 @@ const InfoTax = () => {
           <Select items={classTax} />
         </div>
         <div className="my-4 flex gap-2 items-center">
-          <Input type="checkbox" className="inline-block w-[20px]" id="stock" />
+          <InputSH
+            type="checkbox"
+            className="inline-block w-[20px]"
+            id="stock"
+          />
           <label htmlFor="stock" className="cursor-pointer">
             Manejo de Stock?
           </label>
         </div>
         <div className="my-4">
           <label className="block mb-2">Cantidad de Stock</label>
-          <Input type="text" />
+          <InputSH type="text" />
         </div>
         <div className="my-4">
           <label className="block mb-2">Estatus del Stock</label>

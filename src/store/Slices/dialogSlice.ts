@@ -4,8 +4,8 @@ const initialState = {
   dialog: false,
 };
 
-export const uiSlice = createSlice({
-  name: "UI",
+export const dialogSlice = createSlice({
+  name: "dialog",
   initialState,
   reducers: {
     showDialog(state, { payload }) {
@@ -14,6 +14,6 @@ export const uiSlice = createSlice({
   },
 });
 
-export const { showDialog } = uiSlice.actions;
+export const { showDialog } = dialogSlice.actions;
 
-export default uiSlice.reducer;
+export default dialogSlice.reducer;

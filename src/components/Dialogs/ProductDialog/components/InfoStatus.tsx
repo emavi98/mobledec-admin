@@ -1,6 +1,4 @@
-import Accordion from "@/components/Atomic/Accordion";
-import Select from "@/components/Atomic/Select";
-import { Input } from "@/components/ui/input";
+import { InputSH, Accordion, Select } from "@/components";
 
 const InfoStatus = () => {
   const items = ["Draft", "Pending", "Private", "Publish"];
@@ -12,7 +10,7 @@ const InfoStatus = () => {
           <Select items={items} />
         </div>
         <div className="my-4 flex gap-2 items-center">
-          <Input
+          <InputSH
             type="checkbox"
             className="inline-block w-[20px]"
             id="featured"

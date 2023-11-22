@@ -1,4 +1,4 @@
-import { Input as InputFC } from "@/components/ui/input";
+import { InputSH } from "@/components/ui/input";
 
 type InputProp = {
   label: string;
@@ -32,7 +32,7 @@ const Input: React.FC<InputProp> = ({
       <label htmlFor={id} className={`${classNameLabel && classNameLabel}`}>
         {label}*
       </label>
-      <InputFC
+      <InputSH
         id={id}
         className={`outline-none focus-visible:ring-offset-0 ${className}`}
         data-name={dataName}

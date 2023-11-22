@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react";
 
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
 import { Product } from "@/interfaces/general-dto";
 import { formatPrice } from "@/lib/utils";
+
+import { Button, InputSH } from "@/components";
 
 type UpProps = {
   product: Product;
@@ -71,7 +71,7 @@ const UpDialog: React.FC<UpProps> = ({
             <p className="text text-base">
               <span className="font-bold">Producto: </span>
             </p>
-            <Input
+            <InputSH
               type="text"
               placeholder={product?.product_name}
               className="flex items-center text-center h-auto p-2 bg-transparent border-slate-800 outline-none focus-visible:ring-0 placeholder:text placeholder:text-base placeholder:text-black"
@@ -82,7 +82,7 @@ const UpDialog: React.FC<UpProps> = ({
               <p className="text text-base">
                 <span className="font-bold">Precio unitario:</span>{" "}
               </p>
-              <Input
+              <InputSH
                 type="number"
                 placeholder={priceProduct.toString() + "€"}
                 className="flex items-center text-center max-w-[75px] h-auto p-2 bg-transparent border-slate-800 outline-none focus-visible:ring-0 placeholder:text placeholder:text-base placeholder:text-black"

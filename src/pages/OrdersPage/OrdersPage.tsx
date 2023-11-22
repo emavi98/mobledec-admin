@@ -1,13 +1,10 @@
 import { useState, useMemo } from "react";
 
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
 import { Order } from "@/interfaces/table-dto";
-import { columnsOrder } from "@/services/data/data-table";
+import { columnsOrder } from "@/domain/data/data-table";
 import { useAppDispatch } from "@/store/hooks";
-import { showDialog } from "@/store/features/uiSlice";
-import Table from "@/components/Table/Table";
-import OrderDialog from "@/components/Dialogs/OrderDialog/OrderDialog";
+import { showDialog } from "@/store/Slices/dialogSlice";
+import { Button, InputSH, Table, OrderDialog } from "@/components";
 import mData from "@/MOCK_DATA.json";
 
 export const OrdersPage = () => {
@@ -34,7 +31,7 @@ export const OrdersPage = () => {
           <div className="flex justify-between">
             <div className="flex gap-4">
               <OrderDialog />
-              <Input
+              <InputSH
                 className="w-[200px]"
                 placeholder="Buscar..."
                 value={filtering}

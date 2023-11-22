@@ -2,11 +2,10 @@ import React, { useState, useEffect } from "react";
 import Select, { SingleValue } from "react-select";
 
 import { InfoProp, Product } from "@/interfaces/general-dto";
-import { columnsProduct } from "@/services/data/data-table";
-import { Input } from "@/components/ui/input";
+import { columnsProduct } from "@/domain/data/data-table";
 
-import UpDialog from "@/components/Dialogs/OrderDialog/components/UpDialog";
-import Table from "@/components/Table/Table";
+import { InputSH, Table } from "@/components";
+import UpDialog from "./UpDialog";
 
 import productD from "@/MOCK_DATA_PRODUCTS.json";
 
@@ -113,13 +112,13 @@ const InfoOrder: React.FC<InfoProp> = ({ setInfo }) => {
                 <td className="px-6 py-4">{product?.subTotal}</td>
                 <td className="px-6 py-4">
                   <div className="flex justify-center items-center gap-2">
-                    <Input type="checkbox" id="pedido" className="w-[20px]" />
+                    <InputSH type="checkbox" id="pedido" className="w-[20px]" />
                     <label htmlFor="pedido">Hacer pedido?</label>
                   </div>
                 </td>
                 <td className="px-6 py-4">
                   <div className="flex justify-center items-center gap-2">
-                    <Input type="checkbox" id="pedido" className="w-[20px]" />
+                    <InputSH type="checkbox" id="pedido" className="w-[20px]" />
                     <label htmlFor="pedido">Rebajar Stock?</label>
                   </div>
                 </td>

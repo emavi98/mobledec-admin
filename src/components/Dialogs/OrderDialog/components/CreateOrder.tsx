@@ -2,9 +2,7 @@ import { useState } from "react";
 import { PDFDownloadLink } from "@react-pdf/renderer";
 
 import { PDFModel, InfoProp } from "@/interfaces/general-dto";
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import PDF from "@/components/Atomic/PDF";
+import { Button, InputSH, PDF } from "@/components";
 
 const CreateOrder: React.FC<InfoProp> = ({ info, setInfo }) => {
   const [checkValue, setCheckValue] = useState(false);
@@ -81,7 +79,7 @@ const CreateOrder: React.FC<InfoProp> = ({ info, setInfo }) => {
           )}
         </div>
         <div className="flex items-center my-8 mx-8 gap-4">
-          <Input
+          <InputSH
             type="checkbox"
             className="w-[40px] cursor-pointer"
             onChange={sendOption}

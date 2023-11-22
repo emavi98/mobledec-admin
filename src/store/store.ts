@@ -1,6 +1,6 @@
 import { configureStore } from "@reduxjs/toolkit";
 //import counterReducer from './features/counterSlice';
-import uiSliceReducer from "./features/uiSlice";
+import uiSliceReducer from "./Slices/dialogSlice";
 import { userApi } from "../services/userApi";
 import { setupListeners } from "@reduxjs/toolkit/dist/query";
 

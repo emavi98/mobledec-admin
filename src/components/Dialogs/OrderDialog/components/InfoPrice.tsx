@@ -1,14 +1,16 @@
 import { useState } from "react";
+
+import { formatPrice } from "@/lib/utils";
+import { InfoProp } from "@/interfaces/general-dto";
+
 import {
-  Select as SelectSH,
+  SelectSH,
   SelectContent,
   SelectItem,
   SelectTrigger,
   SelectValue,
-} from "@/components/ui/select";
-import { formatPrice } from "@/lib/utils";
-import { InfoProp } from "@/interfaces/general-dto";
-import { Input } from "@/components/ui/input";
+  InputSH,
+} from "@/components";
 
 const InfoPrice: React.FC<InfoProp> = ({ info, setInfo }) => {
   const [paymentValue, setPaymentValue] = useState(0);
@@ -60,7 +62,7 @@ const InfoPrice: React.FC<InfoProp> = ({ info, setInfo }) => {
             <SelectItem value="transferencia">Transferencia</SelectItem>
           </SelectContent>
         </SelectSH>
-        <Input placeholder="400€" onBlur={assignPayment} />
+        <InputSH placeholder="400€" onBlur={assignPayment} />
       </div>
       <div className="flex mt-3 items-center gap-4">
         {info && info.pending_payment ? (
@@ -69,7 +71,7 @@ const InfoPrice: React.FC<InfoProp> = ({ info, setInfo }) => {
             <strong>{formatPrice(+info.pending_payment)}</strong>
           </p>
         ) : null}
-        <Input
+        <InputSH
           placeholder="100€ cada mes"
           className="max-w-[200px]"
           onBlur={setInstallment}
@@ -79,7 +81,7 @@ const InfoPrice: React.FC<InfoProp> = ({ info, setInfo }) => {
         <label htmlFor="note" className="text-sm mt-2">
           Nota
         </label>
-        <Input id="note" onBlur={setNote} />
+        <InputSH id="note" onBlur={setNote} />
       </div>
     </div>
   );

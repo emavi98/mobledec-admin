@@ -1,11 +1,7 @@
 import { useState, useCallback } from "react";
 import Dropzone, { useDropzone, FileRejection } from "react-dropzone";
 
-import { Textarea } from "@/components/ui/textarea";
-import Accordion from "@/components/Atomic/Accordion";
-import InputFC from "@/components/Inputs/Input";
-import Select from "@/components/Atomic/Select";
-import { Input } from "@/components/ui/input";
+import { Textarea, Accordion, Input, Select, InputSH } from "@/components";
 
 const InfoBasic = () => {
   const items = ["Simple", "Variable"];
@@ -13,12 +9,12 @@ const InfoBasic = () => {
     <Accordion title="Información basica">
       <div className="w-[97.5%] m-auto border p-4 rounded-md mb-8">
         <h2 className="mb-8">Basico</h2>
-        <InputFC
+        <Input
           label={"Nombre"}
           classNameDiv="my-4"
           classNameLabel="mb-2 block"
         />
-        <InputFC
+        <Input
           label="Slug"
           disabled={true}
           classNameDiv="my-4"
@@ -35,20 +31,20 @@ const InfoBasic = () => {
           <label className="block mb-2">Descripción del producto</label>
           <Textarea />
         </div>
-        <InputFC
+        <Input
           label="Días de entrega"
           classNameDiv="my-4"
           classNameLabel="mb-2 block"
         />
-        <InputFC label="SKU" classNameDiv="my-4" classNameLabel="mb-2 block" />
+        <Input label="SKU" classNameDiv="my-4" classNameLabel="mb-2 block" />
         <div className="flex gap-2 justify-between">
-          <InputFC
+          <Input
             label="Minutos de montaje"
             classNameDiv="my-4"
             classNameLabel="mb-2 block"
             type="number"
           />
-          <InputFC
+          <Input
             label="Precio"
             classNameDiv="my-4"
             classNameLabel="mb-2 block"
@@ -56,13 +52,13 @@ const InfoBasic = () => {
           />
         </div>
         <div className="flex gap-2 justify-between">
-          <InputFC
+          <Input
             label="Precio regular"
             classNameDiv="my-4"
             classNameLabel="mb-2 block"
             type="number"
           />
-          <InputFC
+          <Input
             label="Precio de venta"
             classNameDiv="my-4"
             classNameLabel="mb-2 block"
@@ -72,11 +68,11 @@ const InfoBasic = () => {
         <div className="flex gap-2">
           <div className="my-4">
             <label className="block mb-2">Fecha de venta desde:</label>
-            <Input type="date" className="" />
+            <InputSH type="date" className="" />
           </div>
           <div className="my-4">
             <label className="block mb-2">Fecha de venta hasta:</label>
-            <Input type="date" className="" />
+            <InputSH type="date" className="" />
           </div>
         </div>
       </div>

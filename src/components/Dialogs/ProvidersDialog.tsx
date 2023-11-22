@@ -1,4 +1,4 @@
-import { Input } from "../ui/input";
+import { InputSH } from "@/components";
 import { Textarea } from "../ui/textarea";
 import Dialog from "./Dialog";
 
@@ -8,15 +8,15 @@ const ProvidersDialog = () => {
       <div className="w-[97.5%] m-auto">
         <div className="my-4">
           <label className="mb-2 block">Nombre</label>
-          <Input />
+          <InputSH />
         </div>
         <div className="my-4">
           <label className="mb-2 block">Email</label>
-          <Input />
+          <InputSH />
         </div>
         <div className="my-4">
           <label className="mb-2 block">Telefono</label>
-          <Input />
+          <InputSH />
         </div>
         <div className="my-4">
           <label className="mb-2 block">Condiciones</label>
