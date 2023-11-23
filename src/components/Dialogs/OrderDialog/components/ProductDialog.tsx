@@ -6,12 +6,9 @@ import { addProduct } from "@/store/Slices/orderSlice";
 import { formatPrice } from "@/lib/utils";
 
 import { Button, InputSH } from "@/components";
+import { removeDialog } from "@/store/Slices/dialogSlice";
 
-type UpProps = {
-  onShow: (value: boolean) => void;
-};
-
-const ProductDialog: React.FC<UpProps> = ({ onShow }) => {
+const ProductDialog = () => {
   const dispatch = useAppDispatch();
   const { productDialog: product } = useAppSelector(
     (state) => state.orderSliceReducer
@@ -133,7 +130,7 @@ const ProductDialog: React.FC<UpProps> = ({ onShow }) => {
           <Button
             className="min-w-[200px]"
             onClick={() => {
-              onShow(false);
+              dispatch(removeDialog("Products"));
             }}
           >
             Cancelar
@@ -141,7 +138,7 @@ const ProductDialog: React.FC<UpProps> = ({ onShow }) => {
           <Button
             className="min-w-[200px]"
             onClick={() => {
-              onShow(false);
+              dispatch(removeDialog("Products"));
               addProductOrderList();
             }}
           >

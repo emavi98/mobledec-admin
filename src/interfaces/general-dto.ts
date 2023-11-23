@@ -16,14 +16,18 @@ export const InitialOrderState: OrderProps = {
   },
 };
 
+export const InitialDialogState: DialogProps = {
+  dialog: [],
+};
+
+export interface DialogProps {
+  dialog: string[];
+}
+
 export interface OrderProps {
   orderList: Product[];
   productDialog: Product;
 }
-
-export const InitialDialogState = {
-  dialog: false,
-};
 
 export interface Product {
   sku: number;

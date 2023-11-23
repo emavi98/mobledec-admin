@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
 import Select, { SingleValue } from "react-select";
 
 import { InfoProp, Product } from "@/interfaces/general-dto";
@@ -7,6 +7,7 @@ import { formatPrice } from "@/lib/utils";
 
 import { useAppDispatch, useAppSelector } from "@/store/hooks";
 import { setProductDialog, removeProduct } from "@/store/Slices/orderSlice";
+import { showDialog } from "@/store/Slices/dialogSlice";
 
 import { Table } from "@/components";
 import ProductDialog from "./ProductDialog";
@@ -19,7 +20,7 @@ const InfoOrder: React.FC<InfoProp> = ({ orderInfo, setInfo }) => {
   const orderList = useAppSelector(
     (state) => state.orderSliceReducer.orderList
   );
-  const [showProduct, setShowProduct] = useState(false);
+  const dialog = useAppSelector((state) => state.dialogSliceReducer.dialog);
 
   const productData = productD.map((item) => ({
     value: item.product_name,
@@ -36,7 +37,7 @@ const InfoOrder: React.FC<InfoProp> = ({ orderInfo, setInfo }) => {
       );
 
       dispatch(setProductDialog(productFiltered));
-      setShowProduct(true);
+      dispatch(showDialog("Products"));
     }
   };
 
@@ -46,7 +47,7 @@ const InfoOrder: React.FC<InfoProp> = ({ orderInfo, setInfo }) => {
     );
     if (selectedProduct) {
       dispatch(setProductDialog(selectedProduct));
-      setShowProduct(true);
+      dispatch(showDialog("Products"));
     }
   };
 
@@ -71,10 +72,10 @@ const InfoOrder: React.FC<InfoProp> = ({ orderInfo, setInfo }) => {
     <>
       <div
         className={`mb-8 border border-slate-400 rounded-md p-4 relative ${
-          showProduct && "min-h-[500px]"
+          dialog.some((dialog) => dialog === "Products") && "min-h-[500px]"
         }`}
       >
-        {showProduct && <ProductDialog onShow={setShowProduct} />}
+        {dialog.some((dialog) => dialog === "Products") && <ProductDialog />}
         <h2>Datos de pedido*</h2>
         <div className="mt-8">
           <Select

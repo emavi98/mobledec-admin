@@ -4,7 +4,7 @@ import Dialog from "./Dialog";
 
 const ProvidersDialog = () => {
   return (
-    <Dialog textBtn="crear proveedor">
+    <Dialog textBtn="crear proveedor" dialogName="Providers">
       <div className="w-[97.5%] m-auto">
         <div className="my-4">
           <label className="mb-2 block">Nombre</label>

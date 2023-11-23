@@ -16,7 +16,7 @@ export const OrdersPage = () => {
   const data: Order[] = useMemo(() => mData, []);
 
   const editRowTable = () => {
-    dispatch(showDialog(true));
+    dispatch(showDialog("Order"));
   };
 
   const removeRowTable = () => {

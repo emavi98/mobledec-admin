@@ -9,7 +9,7 @@ import InfoCombinations from "./components/InfoCombinations";
 
 const ProductDialog = () => {
   return (
-    <Dialog textBtn="crear producto">
+    <Dialog textBtn="crear producto" dialogName="Product">
       <div>
         <InfoBasic />
         <InfoStatus />

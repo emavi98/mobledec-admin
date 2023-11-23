@@ -18,7 +18,7 @@ const OrderDialog = () => {
   }, []);
 
   return (
-    <Dialog textBtn="crear pedido">
+    <Dialog textBtn="crear pedido" dialogName="Order">
       <div>
         <InfoClient setInfo={setOrderInfo} />
         <InfoOrder orderInfo={orderInfo} setInfo={setOrderInfo} />
