@@ -2,15 +2,26 @@ import { useState, useMemo } from "react";
 
 import { Order } from "@/interfaces/table-dto";
 import { columnsOrder } from "@/domain/data/data-table";
+import { useAppDispatch } from "@/store/hooks";
+import { showDialog } from "@/store/Slices/dialogSlice";
 
 import { Button, Table, InputSH, ProductDialog } from "@/components";
 
 import mData from "@/MOCK_DATA.json";
 
 export const ProductsPage = () => {
+  const dispatch = useAppDispatch();
   const [filtering, setFiltering] = useState("");
 
   const data: Order[] = useMemo(() => mData, []);
+
+  const editRowTable = () => {
+    dispatch(showDialog("Product"));
+  };
+
+  const removeRowTable = () => {
+    console.log("Remove");
+  };
   return (
     <>
       <header className="bg-white shadow">
@@ -43,6 +54,8 @@ export const ProductsPage = () => {
               setFiltering={setFiltering}
               data={data}
               columns={columnsOrder}
+              editRowFn={editRowTable}
+              removeRowFn={removeRowTable}
             />
           </div>
         </div>
