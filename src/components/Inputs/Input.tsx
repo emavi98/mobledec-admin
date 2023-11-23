@@ -4,6 +4,7 @@ type InputProp = {
   label: string;
   id?: string;
   type?: string;
+  placeholder?: string;
   dataName?: string;
   className?: string;
   classNameDiv?: string;
@@ -18,6 +19,7 @@ const Input: React.FC<InputProp> = ({
   label,
   id,
   type,
+  placeholder,
   dataName,
   className,
   classNameDiv,
@@ -40,6 +42,7 @@ const Input: React.FC<InputProp> = ({
         onBlur={onBlur}
         type={type}
         disabled={disabled}
+        placeholder={placeholder}
       />
       {error && error.length > 0 && <p className="text-red-500">{error}</p>}
     </div>

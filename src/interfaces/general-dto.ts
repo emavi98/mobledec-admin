@@ -2,6 +2,7 @@ export enum lengthType {
   pageIndex = 1,
   lastPage = -1,
   notFound = -1,
+  mainImageNumber = 1,
 }
 
 export const InitialOrderState: OrderProps = {
@@ -44,6 +45,19 @@ export interface OrderModel {
   [key: string]: string | number | boolean | Product[] | undefined;
 }
 
+export interface Image {
+  path: string;
+  lastModified: number;
+  lastModifiedDate: Date;
+  name: string;
+  size: number;
+  type: string;
+}
+
+export interface ProductModel {
+  [key: string]: string | number | boolean | undefined | File[] | File;
+}
+
 export interface PDFModel extends OrderModel {
   name: string;
   last_name: string;
@@ -70,4 +84,9 @@ export interface PDFModel extends OrderModel {
 export type InfoProp = {
   orderInfo?: OrderModel;
   setInfo: React.Dispatch<React.SetStateAction<OrderModel>>;
+};
+
+export type InfoProductProp = {
+  productInfo?: ProductModel;
+  setProductInfo: React.Dispatch<React.SetStateAction<ProductModel>>;
 };
