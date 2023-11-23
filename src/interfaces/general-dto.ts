@@ -1,3 +1,30 @@
+export enum lengthType {
+  pageIndex = 1,
+  lastPage = -1,
+  notFound = -1,
+}
+
+export interface OrderProps {
+  orderList: Product[];
+  productDialog: Product;
+}
+
+export const InitialOrderState: OrderProps = {
+  orderList: [],
+  productDialog: {
+    cost: 0,
+    delivery_days: 0,
+    id: 0,
+    minutes_mount: 0,
+    product_name: "",
+    sku: 0,
+  },
+};
+
+export const InitialDialogState = {
+  dialog: false,
+};
+
 export interface Product {
   sku: number;
   product_name: string;
@@ -37,6 +64,6 @@ export interface PDFModel extends OrderModel {
 }
 
 export type InfoProp = {
-  info?: OrderModel;
+  orderInfo?: OrderModel;
   setInfo: React.Dispatch<React.SetStateAction<OrderModel>>;
 };

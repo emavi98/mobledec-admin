@@ -15,6 +15,7 @@ import {
   TableRow,
   TableTypePagination,
 } from "@/interfaces/table-dto";
+import { lengthType } from "@/interfaces/general-dto";
 
 const Table: React.FC<TableProps> = ({
   filtering,
@@ -223,8 +224,8 @@ const TablePagination: React.FC<{ table: TableTypePagination }> = ({
       </button>
       <div className="flex items-center">
         <span>
-          Pagina {table.getState().pagination.pageIndex + 1} de{" "}
-          {table.getPageCount()}
+          Pagina {table.getState().pagination.pageIndex + lengthType.pageIndex}{" "}
+          de {table.getPageCount()}
         </span>
       </div>
       <button
@@ -236,7 +237,9 @@ const TablePagination: React.FC<{ table: TableTypePagination }> = ({
       </button>
       <button
         className="border border-slate-600 p-2 rounded-sm hover:bg-slate-700 hover:text-white transition-all disabled:opacity-50"
-        onClick={() => table.setPageIndex(table.getPageCount() - 1)}
+        onClick={() =>
+          table.setPageIndex(table.getPageCount() - lengthType.lastPage)
+        }
       >
         Última página
       </button>

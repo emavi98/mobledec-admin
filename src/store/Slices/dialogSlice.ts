@@ -1,8 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
+import { InitialDialogState } from "@/interfaces/general-dto";
 
-const initialState = {
-  dialog: false,
-};
+const initialState = InitialDialogState;
 
 export const dialogSlice = createSlice({
   name: "dialog",

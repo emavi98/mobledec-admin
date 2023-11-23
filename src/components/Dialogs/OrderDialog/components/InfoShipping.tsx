@@ -12,7 +12,7 @@ import {
   InputSH,
 } from "@/components";
 
-const InfoShipping: React.FC<InfoProp> = ({ info, setInfo }) => {
+const InfoShipping: React.FC<InfoProp> = ({ orderInfo, setInfo }) => {
   const [priceShipping, setPriceShipping] = useState(0);
 
   const assignShippingMethod = (value: string) => {
@@ -27,8 +27,8 @@ const InfoShipping: React.FC<InfoProp> = ({ info, setInfo }) => {
   };
 
   const assignShippingCost = () => {
-    if (priceShipping && info && info.total) {
-      const newTotal = +info.total + priceShipping;
+    if (priceShipping && orderInfo && orderInfo.total) {
+      const newTotal = +orderInfo.total + priceShipping;
       setInfo((prevInfo) => ({
         ...prevInfo,
         total_shipping: newTotal,
@@ -77,8 +77,8 @@ const InfoShipping: React.FC<InfoProp> = ({ info, setInfo }) => {
       </div>
       <p className="text-sm">
         Total de la operación:{" "}
-        {info && info.total_shipping && (
-          <strong>{formatPrice(+info.total_shipping)}</strong>
+        {orderInfo && orderInfo.total_shipping && (
+          <strong>{formatPrice(+orderInfo.total_shipping)}</strong>
         )}
       </p>
     </div>

@@ -31,10 +31,10 @@ const styles = StyleSheet.create({
   },
 });
 
-const PDF: React.FC<{ info: PDFModel }> = ({ info }) => {
+const PDF: React.FC<{ orderInfo: PDFModel }> = ({ orderInfo }) => {
   return (
     <>
-      {info && (
+      {orderInfo && (
         <Document>
           <Page size={"A4"} style={styles.page}>
             <View style={styles.mainView}>
@@ -42,21 +42,25 @@ const PDF: React.FC<{ info: PDFModel }> = ({ info }) => {
             </View>
             <View style={styles.mainView}>
               <Text style={styles.textDescription}>
-                Nombre: {info.name}
-                {info.last_name}
-              </Text>
-              <Text style={styles.textDescription}>DNI/CIF: {info.dni}</Text>
-              <Text style={styles.textDescription}>Email: {info.email}</Text>
-              <Text style={styles.textDescription}>
-                Dirección: {info.address}
+                Nombre: {orderInfo.name}
+                {orderInfo.last_name}
               </Text>
               <Text style={styles.textDescription}>
-                Codigo Postal: {info.cp}
+                DNI/CIF: {orderInfo.dni}
+              </Text>
+              <Text style={styles.textDescription}>
+                Email: {orderInfo.email}
+              </Text>
+              <Text style={styles.textDescription}>
+                Dirección: {orderInfo.address}
+              </Text>
+              <Text style={styles.textDescription}>
+                Codigo Postal: {orderInfo.cp}
               </Text>
             </View>
             <View style={styles.mainView}>
               <Text style={styles.titleProducts}>PRODUCTOS</Text>
-              {info.products.map((product) => (
+              {orderInfo.products.map((product) => (
                 <View style={styles.productView} key={product.sku}>
                   <Text>SKU: {product.sku}</Text>
                   <Text>Nombre del producto: {product.product_name}</Text>
@@ -73,21 +77,25 @@ const PDF: React.FC<{ info: PDFModel }> = ({ info }) => {
             </View>
             <View style={styles.mainView}>
               <Text style={styles.titleShipping}>LOGISTICA</Text>
-              <Text>Forma de envío: {info.shipping_method}</Text>
-              <Text>Costo del envío: {info.shipping_cost}</Text>
-              {info.description_shipping && (
-                <Text>Descripción del envío: {info.description_shipping}</Text>
+              <Text>Forma de envío: {orderInfo.shipping_method}</Text>
+              <Text>Costo del envío: {orderInfo.shipping_cost}</Text>
+              {orderInfo.description_shipping && (
+                <Text>
+                  Descripción del envío: {orderInfo.description_shipping}
+                </Text>
               )}
             </View>
             <View style={styles.mainView}>
               <Text style={styles.titlePayment}>FORMA DE PAGO</Text>
-              <Text>Forma de pago: {info.payment_method}</Text>
-              <Text>Pago: {info.payment}</Text>
-              {info.pending_payment && (
-                <Text>Pendiente por pagar: {info.pending_payment}</Text>
+              <Text>Forma de pago: {orderInfo.payment_method}</Text>
+              <Text>Pago: {orderInfo.payment}</Text>
+              {orderInfo.pending_payment && (
+                <Text>Pendiente por pagar: {orderInfo.pending_payment}</Text>
               )}
-              {info.installment && <Text>Cuotas: {info.installment}</Text>}
-              {info.note && <Text>Nota adicional: {info.note}</Text>}
+              {orderInfo.installment && (
+                <Text>Cuotas: {orderInfo.installment}</Text>
+              )}
+              {orderInfo.note && <Text>Nota adicional: {orderInfo.note}</Text>}
             </View>
           </Page>
         </Document>

@@ -1,43 +1,32 @@
-import { createSlice } from "@reduxjs/toolkit";
-import { Product } from "@/interfaces/general-dto";
+import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import {
+  Product,
+  lengthType,
+  InitialOrderState,
+} from "@/interfaces/general-dto";
 
-type orderProps = {
-  orderList: Product[];
-  productDialog: Product;
-};
-
-const initialState: orderProps = {
-  orderList: [],
-  productDialog: {
-    cost: 0,
-    delivery_days: 0,
-    id: 0,
-    minutes_mount: 0,
-    product_name: "",
-    sku: 0,
-  },
-};
+const initialState = InitialOrderState;
 
 export const orderSlice = createSlice({
   name: "Order",
   initialState,
   reducers: {
-    addProduct(state, { payload }) {
+    addProduct(state, action: PayloadAction<Product>) {
       const productIndex = state.orderList.findIndex((item) => item?.sku);
-      if (productIndex === -1) {
-        state.orderList = [...state.orderList, payload];
+      if (productIndex === lengthType.notFound) {
+        state.orderList = [...state.orderList, action.payload];
       } else {
         state.orderList = state.orderList
           .filter((item) => item.sku !== state.productDialog.sku)
-          .concat(payload);
+          .concat(action.payload);
       }
     },
-    setProductDialog(state, { payload }) {
-      state.productDialog = payload;
+    setProductDialog(state, action: PayloadAction<Product>) {
+      state.productDialog = action.payload;
     },
-    removeProduct(state, { payload }) {
+    removeProduct(state, action: PayloadAction<Product>) {
       const newOrderList = state.orderList.filter(
-        (item) => item.sku !== payload.sku
+        (item) => item.sku !== action.payload.sku
       );
       state.orderList = newOrderList;
     },

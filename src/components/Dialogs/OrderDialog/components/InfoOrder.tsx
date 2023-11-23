@@ -3,6 +3,7 @@ import Select, { SingleValue } from "react-select";
 
 import { InfoProp, Product } from "@/interfaces/general-dto";
 import { columnsProduct } from "@/domain/data/data-table";
+import { formatPrice } from "@/lib/utils";
 
 import { useAppDispatch, useAppSelector } from "@/store/hooks";
 import { setProductDialog, removeProduct } from "@/store/Slices/orderSlice";
@@ -12,9 +13,8 @@ import ProductDialog from "./ProductDialog";
 import ProductTable from "./ProductTable";
 
 import productD from "@/MOCK_DATA_PRODUCTS.json";
-import { formatPrice } from "@/lib/utils";
 
-const InfoOrder: React.FC<InfoProp> = ({ info, setInfo }) => {
+const InfoOrder: React.FC<InfoProp> = ({ orderInfo, setInfo }) => {
   const dispatch = useAppDispatch();
   const orderList = useAppSelector(
     (state) => state.orderSliceReducer.orderList
@@ -41,14 +41,22 @@ const InfoOrder: React.FC<InfoProp> = ({ info, setInfo }) => {
   };
 
   const editRowTable = (id: number) => {
-    const selectedProduct = orderList.filter((item) => item.sku === id)[0];
-    dispatch(setProductDialog(selectedProduct));
-    setShowProduct(true);
+    const selectedProduct: Product | undefined = orderList.find(
+      (item) => item.sku === id
+    );
+    if (selectedProduct) {
+      dispatch(setProductDialog(selectedProduct));
+      setShowProduct(true);
+    }
   };
 
   const removeRowTable = (id: number) => {
-    const selectedProduct = orderList.filter((item) => item.sku === id)[0];
-    dispatch(removeProduct(selectedProduct));
+    const selectedProduct: Product | undefined = orderList.find(
+      (item) => item.sku === id
+    );
+    if (selectedProduct) {
+      dispatch(removeProduct(selectedProduct));
+    }
   };
 
   useEffect(() => {
@@ -97,10 +105,10 @@ const InfoOrder: React.FC<InfoProp> = ({ info, setInfo }) => {
             >
               <ProductTable />
             </Table>
-            {info && info.total ? (
+            {orderInfo && orderInfo.total ? (
               <p>
                 <span className="font-bold">Total:</span>{" "}
-                {formatPrice(+info?.total as number)}
+                {formatPrice(+orderInfo?.total as number)}
               </p>
             ) : null}
           </div>

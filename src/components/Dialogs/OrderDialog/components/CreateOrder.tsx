@@ -4,7 +4,7 @@ import { PDFDownloadLink } from "@react-pdf/renderer";
 import { PDFModel, InfoProp } from "@/interfaces/general-dto";
 import { Button, InputSH, PDF } from "@/components";
 
-const CreateOrder: React.FC<InfoProp> = ({ info, setInfo }) => {
+const CreateOrder: React.FC<InfoProp> = ({ orderInfo, setInfo }) => {
   const [checkValue, setCheckValue] = useState(false);
   const sendOption = () => {
     setCheckValue((prevCheck) => !prevCheck);
@@ -13,36 +13,36 @@ const CreateOrder: React.FC<InfoProp> = ({ info, setInfo }) => {
 
   const checkInfo = () => {
     if (
-      info &&
-      info.name &&
-      info.name !== "" &&
-      info.last_name &&
-      info.last_name !== "" &&
-      info.email &&
-      info.email !== "" &&
-      info.password &&
-      info.password !== "" &&
-      info.address &&
-      info.address !== "" &&
-      info.cp &&
-      info.cp !== "" &&
-      info.phone &&
-      info.phone !== "" &&
-      info.dni &&
-      info.dni !== "" &&
-      info.products &&
-      Array.isArray(info.products) &&
-      info.products.length !== 0 &&
-      info.shipping_method &&
-      info.shipping_method !== "" &&
-      info.total &&
-      info.total !== 0 &&
-      info.total_shipping &&
-      info.total_shipping !== 0 &&
-      info.payment_method &&
-      info.payment_method !== "" &&
-      info.payment &&
-      info.payment !== 0
+      orderInfo &&
+      orderInfo.name &&
+      orderInfo.name !== "" &&
+      orderInfo.last_name &&
+      orderInfo.last_name !== "" &&
+      orderInfo.email &&
+      orderInfo.email !== "" &&
+      orderInfo.password &&
+      orderInfo.password !== "" &&
+      orderInfo.address &&
+      orderInfo.address !== "" &&
+      orderInfo.cp &&
+      orderInfo.cp !== "" &&
+      orderInfo.phone &&
+      orderInfo.phone !== "" &&
+      orderInfo.dni &&
+      orderInfo.dni !== "" &&
+      orderInfo.products &&
+      Array.isArray(orderInfo.products) &&
+      orderInfo.products.length !== 0 &&
+      orderInfo.shipping_method &&
+      orderInfo.shipping_method !== "" &&
+      orderInfo.total &&
+      orderInfo.total !== 0 &&
+      orderInfo.total_shipping &&
+      orderInfo.total_shipping !== 0 &&
+      orderInfo.payment_method &&
+      orderInfo.payment_method !== "" &&
+      orderInfo.payment &&
+      orderInfo.payment !== 0
     ) {
       return true;
     }
@@ -52,7 +52,9 @@ const CreateOrder: React.FC<InfoProp> = ({ info, setInfo }) => {
       <div className="mb-8 border border-slate-400 rounded-md p-4">
         <div className="flex justify-center pdf">
           {checkInfo() ? (
-            <PDFDownloadLink document={<PDF info={info as PDFModel} />}>
+            <PDFDownloadLink
+              document={<PDF orderInfo={orderInfo as PDFModel} />}
+            >
               {({ loading }) =>
                 loading ? (
                   <button>Loading document...</button>
@@ -67,7 +69,9 @@ const CreateOrder: React.FC<InfoProp> = ({ info, setInfo }) => {
             </p>
           )}
           {checkInfo() && (
-            <PDFDownloadLink document={<PDF info={info as PDFModel} />}>
+            <PDFDownloadLink
+              document={<PDF orderInfo={orderInfo as PDFModel} />}
+            >
               {({ loading }) =>
                 loading ? (
                   <button>Loading document...</button>

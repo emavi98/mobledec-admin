@@ -12,7 +12,7 @@ import {
   InputSH,
 } from "@/components";
 
-const InfoPrice: React.FC<InfoProp> = ({ info, setInfo }) => {
+const InfoPrice: React.FC<InfoProp> = ({ orderInfo, setInfo }) => {
   const [paymentValue, setPaymentValue] = useState(0);
 
   const assignPaymentMethod = (value: string) => {
@@ -65,10 +65,10 @@ const InfoPrice: React.FC<InfoProp> = ({ info, setInfo }) => {
         <InputSH placeholder="400€" onBlur={assignPayment} />
       </div>
       <div className="flex mt-3 items-center gap-4">
-        {info && info.pending_payment ? (
+        {orderInfo && orderInfo.pending_payment ? (
           <p className="text-sm block">
             Pendiente por pagar{" "}
-            <strong>{formatPrice(+info.pending_payment)}</strong>
+            <strong>{formatPrice(+orderInfo.pending_payment)}</strong>
           </p>
         ) : null}
         <InputSH

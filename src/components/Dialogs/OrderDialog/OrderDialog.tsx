@@ -21,10 +21,10 @@ const OrderDialog = () => {
     <Dialog textBtn="crear pedido">
       <div>
         <InfoClient setInfo={setOrderInfo} />
-        <InfoOrder info={orderInfo} setInfo={setOrderInfo} />
-        <InfoShipping info={orderInfo} setInfo={setOrderInfo} />
-        <InfoPrice info={orderInfo} setInfo={setOrderInfo} />
-        <CreateOrder info={orderInfo} setInfo={setOrderInfo} />
+        <InfoOrder orderInfo={orderInfo} setInfo={setOrderInfo} />
+        <InfoShipping orderInfo={orderInfo} setInfo={setOrderInfo} />
+        <InfoPrice orderInfo={orderInfo} setInfo={setOrderInfo} />
+        <CreateOrder orderInfo={orderInfo} setInfo={setOrderInfo} />
       </div>
     </Dialog>
   );
