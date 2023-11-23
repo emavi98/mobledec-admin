@@ -18,6 +18,8 @@ const ProductDialog: React.FC<UpProps> = ({ onShow }) => {
   );
   const [quantity, setQuantity] = useState(1);
   const [subTotal, setSubTotal] = useState(0);
+  const [price, setPrice] = useState(product.cost);
+  const [productName, setProductName] = useState(product.product_name);
 
   const addQuantityProduct = () => {
     setQuantity((prevQuantity) => prevQuantity + 1);
@@ -29,11 +31,21 @@ const ProductDialog: React.FC<UpProps> = ({ onShow }) => {
     }
   };
 
+  const changePrice = (ev: React.ChangeEvent<HTMLInputElement>) => {
+    const price = +ev.target.value;
+    setPrice(price);
+  };
+
+  const changeName = (ev: React.ChangeEvent<HTMLInputElement>) => {
+    const name = ev.target.value;
+    setProductName(name);
+  };
+
   const addProductOrderList = () => {
     const newProduct = {
       sku: product?.sku,
-      product_name: product?.product_name,
-      cost: product?.cost,
+      product_name: productName,
+      cost: price,
       minutes_mount: product?.minutes_mount,
       delivery_days: product?.delivery_days,
       quantity,
@@ -43,10 +55,10 @@ const ProductDialog: React.FC<UpProps> = ({ onShow }) => {
   };
 
   useEffect(() => {
-    if (product?.cost) {
-      setSubTotal(product?.cost * quantity);
+    if (price) {
+      setSubTotal(price * quantity);
     }
-  }, [quantity]);
+  }, [quantity, price]);
 
   return (
     <div className="absolute z-[100] w-full h-full top-0 left-0 rounded-md flex items-center justify-center">
@@ -62,6 +74,7 @@ const ProductDialog: React.FC<UpProps> = ({ onShow }) => {
               type="text"
               placeholder={product.product_name}
               className="flex items-center text-center h-auto p-2 bg-transparent border-slate-800 outline-none focus-visible:ring-0 placeholder:text placeholder:text-base placeholder:text-black"
+              onChange={changeName}
             />
           </div>
           <div className="flex gap-4 items-center">
@@ -73,6 +86,7 @@ const ProductDialog: React.FC<UpProps> = ({ onShow }) => {
                 type="number"
                 placeholder={product?.cost.toString() + "€"}
                 className="flex items-center text-center max-w-[75px] h-auto p-2 bg-transparent border-slate-800 outline-none focus-visible:ring-0 placeholder:text placeholder:text-base placeholder:text-black"
+                onChange={changePrice}
               />
             </div>
           </div>

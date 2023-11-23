@@ -4,11 +4,6 @@ export enum lengthType {
   notFound = -1,
 }
 
-export interface OrderProps {
-  orderList: Product[];
-  productDialog: Product;
-}
-
 export const InitialOrderState: OrderProps = {
   orderList: [],
   productDialog: {
@@ -20,6 +15,11 @@ export const InitialOrderState: OrderProps = {
     sku: 0,
   },
 };
+
+export interface OrderProps {
+  orderList: Product[];
+  productDialog: Product;
+}
 
 export const InitialDialogState = {
   dialog: false,
