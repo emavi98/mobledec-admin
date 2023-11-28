@@ -1,11 +1,10 @@
 import { useState, useMemo } from "react";
 
-import Table from "@/components/Table/Table";
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
 import { Order } from "@/interfaces/table-dto";
+import { columnsOrder } from "@/domain/data/data-table";
+
+import { Button, Table, InputSH, ProvidersDialog } from "@/components";
 import mData from "@/MOCK_DATA.json";
-import { columnsOrder } from "@/services/data/data-table";
 
 export const ProvidersPage = () => {
   const [filtering, setFiltering] = useState("");
@@ -24,8 +23,8 @@ export const ProvidersPage = () => {
         <div className="mx-auto max-w-7xl py-6 sm:px-6 lg:px-8">
           <div className="flex justify-between">
             <div className="flex gap-4">
-              <Button className="w-[200px]">Crear pedido</Button>
-              <Input
+              <ProvidersDialog />
+              <InputSH
                 className="w-[200px]"
                 placeholder="Buscar..."
                 value={filtering}

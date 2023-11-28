@@ -1,17 +1,27 @@
 import { useState, useMemo } from "react";
 
-import Table from "@/components/Table/Table";
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
 import { Order } from "@/interfaces/table-dto";
+import { columnsOrder } from "@/domain/data/data-table";
+import { useAppDispatch } from "@/store/hooks";
+import { showDialog } from "@/store/Slices/dialogSlice";
+
+import { Button, Table, InputSH, ProductDialog } from "@/components";
+
 import mData from "@/MOCK_DATA.json";
-import { columnsOrder } from "@/services/data/data-table";
-import ProductDialog from "@/components/Dialogs/ProductDialog";
 
 export const ProductsPage = () => {
+  const dispatch = useAppDispatch();
   const [filtering, setFiltering] = useState("");
 
   const data: Order[] = useMemo(() => mData, []);
+
+  const editRowTable = () => {
+    dispatch(showDialog("Product"));
+  };
+
+  const removeRowTable = () => {
+    console.log("Remove");
+  };
   return (
     <>
       <header className="bg-white shadow">
@@ -26,7 +36,7 @@ export const ProductsPage = () => {
           <div className="flex justify-between">
             <div className="flex gap-4">
               <ProductDialog />
-              <Input
+              <InputSH
                 className="w-[200px]"
                 placeholder="Buscar..."
                 value={filtering}
@@ -44,6 +54,8 @@ export const ProductsPage = () => {
               setFiltering={setFiltering}
               data={data}
               columns={columnsOrder}
+              editRowFn={editRowTable}
+              removeRowFn={removeRowTable}
             />
           </div>
         </div>

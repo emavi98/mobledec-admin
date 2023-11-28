@@ -1,14 +1,20 @@
 import {
-  Select as SelectSH,
+  SelectSH,
   SelectContent,
   SelectItem,
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
 
-const Select = ({ items }: { items: string[] }) => {
+const Select = ({
+  items,
+  onChange,
+}: {
+  items: string[];
+  onChange?: (ev: string) => void;
+}) => {
   return (
-    <SelectSH>
+    <SelectSH onValueChange={onChange}>
       <SelectTrigger className="w-[180px] focus-visible:ring-0 focus-visible:ring-offset-0">
         <SelectValue placeholder={items[0]} />
       </SelectTrigger>
