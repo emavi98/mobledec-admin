@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useAppSelector } from "@/store/hooks";
 
 import { InfoProp } from "@/interfaces/general-dto";
 import { formatPrice } from "@/lib/utils";
@@ -10,17 +11,21 @@ import {
   SelectTrigger,
   SelectValue,
   InputSH,
+  Textarea,
 } from "@/components";
 
 const InfoShipping: React.FC<InfoProp> = ({ orderInfo, setInfo }) => {
   const [priceShipping, setPriceShipping] = useState(0);
+  const orderObject = useAppSelector((state) => state.dialogSliceReducer.data);
 
   const assignShippingMethod = (value: string) => {
     setInfo((prevInfo) => ({ ...prevInfo, shipping_method: value }));
   };
 
   const assignShippingDescription = (
-    ev: React.ChangeEvent<HTMLInputElement>
+    ev:
+      | React.ChangeEvent<HTMLInputElement>
+      | React.ChangeEvent<HTMLTextAreaElement>
   ) => {
     const value = ev.target.value;
     setInfo((prevInfo) => ({ ...prevInfo, description_shipping: value }));
@@ -47,7 +52,9 @@ const InfoShipping: React.FC<InfoProp> = ({ orderInfo, setInfo }) => {
       <div className="flex gap-4">
         <SelectSH onValueChange={assignShippingMethod}>
           <SelectTrigger className="w-[180px]">
-            <SelectValue placeholder="Opciones" />
+            <SelectValue
+              placeholder={orderObject?.shipping_method || "opciones"}
+            />
           </SelectTrigger>
           <SelectContent>
             <SelectItem value="transporte-montaje">
@@ -66,13 +73,15 @@ const InfoShipping: React.FC<InfoProp> = ({ orderInfo, setInfo }) => {
           placeholder="Precio Manualmente"
           onChange={priceInputChange}
           onBlur={assignShippingCost}
+          value={orderObject?.shipping_cost}
         />
       </div>
       <div className="my-4">
-        <InputSH
+        <Textarea
           placeholder="2 colchones"
-          className="min-h-[75px]"
           onBlur={assignShippingDescription}
+          value={orderObject?.description_shipping}
+          className="min-h-[75px]"
         />
       </div>
       <p className="text-sm">

@@ -15,9 +15,9 @@ const ProductDialog = () => {
     slug: "Product",
   });
 
-  useEffect(() => {
+  /* useEffect(() => {
     console.log(productInfo);
-  }, [productInfo]);
+  }, [productInfo]); */
   return (
     <Dialog textBtn="crear producto" dialogName="Product">
       <div>

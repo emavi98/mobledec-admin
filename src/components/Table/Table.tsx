@@ -93,12 +93,7 @@ const Table: React.FC<TableProps> = ({
         <tbody>
           {table.getRowModel().rows.length > 0
             ? table.getRowModel().rows.map((row) => (
-                <tr
-                  key={row.id}
-                  className={`text-center ${
-                    className ? className.tr : "cursor-pointer"
-                  }`}
-                >
+                <tr key={row.id} className={`text-center`}>
                   {row.getVisibleCells().map((cell) => (
                     <td
                       key={cell.id}
@@ -120,12 +115,7 @@ const Table: React.FC<TableProps> = ({
             : Object.keys(table.getRowModel().rowsById).map((key) => {
                 const row = table.getRowModel().rowsById[key];
                 return (
-                  <tr
-                    key={row.id}
-                    className={`text-center ${
-                      className ? className.tr : "cursor-pointer"
-                    }`}
-                  >
+                  <tr key={row.id} className={`text-center`}>
                     {row.getVisibleCells().map((cell) => (
                       <td
                         key={cell.id}
@@ -178,7 +168,7 @@ const TableActions: React.FC<TableActionsProps> = ({
                 .map((cell) => cell.getContext().row.original)[0] as {
                 sku: string;
               }
-            )?.sku ?? "default"
+            )?.sku ?? +row?.id + 1
           }
           onClick={editHandler}
         >
@@ -193,7 +183,7 @@ const TableActions: React.FC<TableActionsProps> = ({
                 .map((cell) => cell.getContext().row.original)[0] as {
                 sku: string;
               }
-            )?.sku ?? "default"
+            )?.sku ?? +row?.id + 1
           }
           onClick={removeHandler}
         >
@@ -213,14 +203,14 @@ const TablePagination: React.FC<{ table: TableTypePagination }> = ({
         className="border border-slate-600 p-2 rounded-sm hover:bg-slate-700 hover:text-white transition-all disabled:opacity-50"
         onClick={() => table.setPageIndex(0)}
       >
-        Primera página
+        &lt;&lt;
       </button>
       <button
         className="border border-slate-600 p-2 rounded-sm hover:bg-slate-700 hover:text-white transition-all disabled:opacity-50"
         disabled={!table.getCanPreviousPage()}
         onClick={() => table.previousPage()}
       >
-        Página anterior
+        &lt;
       </button>
       <div className="flex items-center">
         <span>
@@ -233,7 +223,7 @@ const TablePagination: React.FC<{ table: TableTypePagination }> = ({
         disabled={!table.getCanNextPage()}
         onClick={() => table.nextPage()}
       >
-        Página siguiente
+        &gt;
       </button>
       <button
         className="border border-slate-600 p-2 rounded-sm hover:bg-slate-700 hover:text-white transition-all disabled:opacity-50"
@@ -241,7 +231,7 @@ const TablePagination: React.FC<{ table: TableTypePagination }> = ({
           table.setPageIndex(table.getPageCount() - lengthType.lastPage)
         }
       >
-        Última página
+        &gt;&gt;
       </button>
     </div>
   );

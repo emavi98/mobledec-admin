@@ -1,10 +1,12 @@
 import React, { useState } from "react";
+import { useAppSelector } from "@/store/hooks";
 
 import { InfoProp } from "@/interfaces/general-dto";
 import Input from "@/components/Inputs/Input";
 
 const InfoClient: React.FC<InfoProp> = ({ setInfo }) => {
   const [error, setError] = useState("");
+  const orderObject = useAppSelector((state) => state.dialogSliceReducer.data);
 
   const validEmail = (ev: React.ChangeEvent<HTMLInputElement>) => {
     const emailValue = ev.target.value;
@@ -40,12 +42,14 @@ const InfoClient: React.FC<InfoProp> = ({ setInfo }) => {
             id="name"
             dataName="name"
             onChange={assignInfoClient}
+            value={orderObject?.first_name}
           />
           <Input
             label="Apellidos"
             id="lastname"
             dataName="last_name"
             onChange={assignInfoClient}
+            value={orderObject?.last_name}
           />
         </div>
         <div className="flex gap-4">
@@ -60,6 +64,7 @@ const InfoClient: React.FC<InfoProp> = ({ setInfo }) => {
             error={error.includes("email") ? "email" : ""}
             onBlur={validEmail}
             onChange={assignInfoClient}
+            value={orderObject?.email}
           />
           <Input
             label="Contraseña"
@@ -67,6 +72,7 @@ const InfoClient: React.FC<InfoProp> = ({ setInfo }) => {
             type="password"
             dataName="password"
             onChange={assignInfoClient}
+            value={orderObject?.password}
           />
         </div>
         <div className="flex gap-4">
@@ -75,19 +81,28 @@ const InfoClient: React.FC<InfoProp> = ({ setInfo }) => {
             id="direccion"
             dataName="address"
             onChange={assignInfoClient}
+            value={orderObject?.address}
           />
-          <Input label="CP" id="cp" dataName="cp" onChange={assignInfoClient} />
+          <Input
+            label="CP"
+            id="cp"
+            dataName="cp"
+            onChange={assignInfoClient}
+            value={orderObject?.cp}
+          />
           <Input
             label="Telefono"
             id="phone"
             dataName="phone"
             onChange={assignInfoClient}
+            value={orderObject?.phone}
           />
           <Input
             label="DNI/CIF"
             id="DNI"
             dataName="dni"
             onChange={assignInfoClient}
+            value={orderObject?.dni}
           />
         </div>
       </div>

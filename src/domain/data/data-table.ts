@@ -56,3 +56,30 @@ export const columnsProduct = [
     accessorKey: "minutes_mount",
   },
 ];
+
+export const columnsClient = [
+  {
+    header: "Id",
+    accessorKey: "id",
+  },
+  {
+    header: "Nombre",
+    accessorKey: "first_name",
+  },
+  {
+    header: "Apellido",
+    accessorKey: "last_name",
+  },
+  {
+    header: "Phone",
+    accessorKey: "phone",
+  },
+  {
+    header: "DNI",
+    accessorKey: "dni",
+  },
+  {
+    header: "Email",
+    accessorKey: "email",
+  },
+];

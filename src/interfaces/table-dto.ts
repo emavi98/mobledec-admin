@@ -3,10 +3,35 @@ export interface Order {
   order: number;
   first_name: string;
   last_name: string;
+  email: string;
+  password: string;
+  address: string;
+  cp: number;
   phone: string;
+  dni: number;
   date: string;
   state: string;
+  shipping_method: string;
+  shipping_cost: number;
+  description_shipping: string;
+  payment_method: string;
+  payment: number;
+  installment: number;
+  note: string;
   subRows?: Order[];
+}
+
+export interface Client {
+  id: number;
+  order: number;
+  first_name: string;
+  last_name: string;
+  email: string;
+  password: string;
+  address: string;
+  cp: number;
+  phone: string;
+  dni: number;
 }
 
 export interface TableProps {
@@ -33,14 +58,15 @@ export interface TableCell {
       original: {
         sku?: string;
       };
+      id: string;
     };
   };
 }
 
 export interface TableRow {
   getVisibleCells(): TableCell[];
+  id: string;
 }
-
 export interface TableActionsProps {
   row: TableRow;
   editHandler: (ev: React.MouseEvent<HTMLParagraphElement>) => void;

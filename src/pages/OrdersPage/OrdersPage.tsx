@@ -1,7 +1,7 @@
 import { useState, useMemo } from "react";
 
 import { useAppDispatch } from "@/store/hooks";
-import { showDialog } from "@/store/Slices/dialogSlice";
+import { showDialog, setDataDialog } from "@/store/Slices/dialogSlice";
 
 import { Order } from "@/interfaces/table-dto";
 import { columnsOrder } from "@/domain/data/data-table";
@@ -15,8 +15,10 @@ export const OrdersPage = () => {
 
   const data: Order[] = useMemo(() => mData, []);
 
-  const editRowTable = () => {
+  const editRowTable = (id: number) => {
     dispatch(showDialog("Order"));
+    const orderObject: Order | undefined = data.find((item) => item.id === id);
+    if (orderObject) dispatch(setDataDialog(orderObject));
   };
 
   const removeRowTable = () => {

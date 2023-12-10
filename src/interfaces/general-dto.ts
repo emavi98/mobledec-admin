@@ -1,3 +1,5 @@
+import { Client, Order } from "./table-dto";
+
 export enum lengthType {
   pageIndex = 1,
   lastPage = -1,
@@ -23,6 +25,7 @@ export const InitialDialogState: DialogProps = {
 
 export interface DialogProps {
   dialog: string[];
+  data?: Order | Client;
 }
 
 export interface OrderProps {
@@ -44,6 +47,8 @@ export interface Product {
 export interface OrderModel {
   [key: string]: string | number | boolean | Product[] | undefined;
 }
+
+export interface ClientModel extends Omit<OrderModel, "Product[]"> {}
 
 export interface Image {
   path: string;

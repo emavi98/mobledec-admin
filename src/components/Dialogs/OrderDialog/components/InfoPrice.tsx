@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useAppSelector } from "@/store/hooks";
 
 import { formatPrice } from "@/lib/utils";
 import { InfoProp } from "@/interfaces/general-dto";
@@ -10,10 +11,12 @@ import {
   SelectTrigger,
   SelectValue,
   InputSH,
+  Textarea,
 } from "@/components";
 
 const InfoPrice: React.FC<InfoProp> = ({ orderInfo, setInfo }) => {
   const [paymentValue, setPaymentValue] = useState(0);
+  const orderObject = useAppSelector((state) => state.dialogSliceReducer.data);
 
   const assignPaymentMethod = (value: string) => {
     setInfo((prevInfo) => ({ ...prevInfo, payment_method: value }));
@@ -39,7 +42,7 @@ const InfoPrice: React.FC<InfoProp> = ({ orderInfo, setInfo }) => {
     setInfo((prevInfo) => ({ ...prevInfo, installment: value }));
   };
 
-  const setNote = (ev: React.ChangeEvent<HTMLInputElement>) => {
+  const setNote = (ev: React.ChangeEvent<HTMLTextAreaElement>) => {
     const value = ev.target.value;
     setInfo((prevInfo) => ({ ...prevInfo, note: value }));
   };
@@ -52,7 +55,9 @@ const InfoPrice: React.FC<InfoProp> = ({ orderInfo, setInfo }) => {
       <div className="flex gap-4">
         <SelectSH onValueChange={assignPaymentMethod}>
           <SelectTrigger className="w-[180px]">
-            <SelectValue placeholder="Efectivo" />
+            <SelectValue
+              placeholder={orderObject?.payment_method || "Efectivo"}
+            />
           </SelectTrigger>
           <SelectContent>
             <SelectItem value="efectivo">Efectivo</SelectItem>
@@ -62,7 +67,11 @@ const InfoPrice: React.FC<InfoProp> = ({ orderInfo, setInfo }) => {
             <SelectItem value="transferencia">Transferencia</SelectItem>
           </SelectContent>
         </SelectSH>
-        <InputSH placeholder="400€" onBlur={assignPayment} />
+        <InputSH
+          placeholder="400€"
+          onBlur={assignPayment}
+          value={orderObject?.payment}
+        />
       </div>
       <div className="flex mt-3 items-center gap-4">
         {orderInfo && orderInfo.pending_payment ? (
@@ -75,13 +84,14 @@ const InfoPrice: React.FC<InfoProp> = ({ orderInfo, setInfo }) => {
           placeholder="100€ cada mes"
           className="max-w-[200px]"
           onBlur={setInstallment}
+          value={orderObject?.installment}
         />
       </div>
       <div>
         <label htmlFor="note" className="text-sm mt-2">
           Nota
         </label>
-        <InputSH id="note" onBlur={setNote} />
+        <Textarea id="note" onBlur={setNote} value={orderObject?.note} />
       </div>
     </div>
   );

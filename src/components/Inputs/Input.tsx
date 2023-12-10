@@ -1,6 +1,7 @@
 import { InputSH } from "@/components/ui/input";
 
 type InputProp = {
+  value?: string | number;
   label: string;
   id?: string;
   type?: string;
@@ -16,6 +17,7 @@ type InputProp = {
 };
 
 const Input: React.FC<InputProp> = ({
+  value,
   label,
   id,
   type,
@@ -43,6 +45,7 @@ const Input: React.FC<InputProp> = ({
         type={type}
         disabled={disabled}
         placeholder={placeholder}
+        defaultValue={value}
       />
       {error && error.length > 0 && <p className="text-red-500">{error}</p>}
     </div>
