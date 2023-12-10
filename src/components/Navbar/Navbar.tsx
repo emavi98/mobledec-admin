@@ -4,6 +4,7 @@ import { useState } from "react";
 import NotificacionsSVG from "@/components/SVG/Notificacions";
 import HamburgerSVG from "@/components/SVG/Hamburger";
 import CloseSVG from "@/components/SVG/Close";
+import Notifications from "./Notifications";
 
 const Navbar = () => {
   const [open, setOpen] = useState(false);
@@ -104,15 +105,7 @@ const Navbar = () => {
           </div>
           <div className="hidden md:block">
             <div className="ml-4 flex items-center md:ml-6">
-              <button
-                type="button"
-                className="relative rounded-full bg-gray-800 p-1 text-gray-400 hover:text-white focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800"
-              >
-                <span className="absolute -inset-1.5"></span>
-                <span className="sr-only">View notifications</span>
-                <NotificacionsSVG />
-              </button>
-
+              <Notifications />
               <div className="relative ml-3">
                 <div>
                   <button

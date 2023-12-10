@@ -27,6 +27,7 @@ export { default as Hamburger } from "./SVG/Hamburger";
 export { default as Notificacions } from "./SVG/Notificacions";
 export { default as Select } from "./Select/Select";
 export { default as Table } from "./Table/Table";
+export { default as NotificationCard } from "./Cards/NotificationCard";
 export * from "./ui/accordion";
 export * from "./ui/button";
 export * from "./ui/dialog";
