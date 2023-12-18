@@ -24,6 +24,14 @@ const Dialog: React.FC<DialogProps> = ({ textBtn, dialogName, children }) => {
     dispatch(removeDialog(dialogName));
   };
 
+  const handlePopup = () => {
+    if (dialog.length > 0) {
+      dispatch(removeDialog(dialogName));
+    } else {
+      dispatch(showDialog(dialogName));
+    }
+  };
+
   const showPopup = () => {
     dispatch(showDialog(dialogName));
   };
@@ -37,7 +45,7 @@ const Dialog: React.FC<DialogProps> = ({ textBtn, dialogName, children }) => {
   }, [dialog]); */
 
   return (
-    <DialogSH open={openPopup()} onOpenChange={closePopup}>
+    <DialogSH open={openPopup()} onOpenChange={handlePopup}>
       <DialogTrigger
         className="inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 bg-primary text-primary-foreground hover:bg-primary/90 h-10 px-4 py-2 w-[200px]"
         onClick={showPopup}
