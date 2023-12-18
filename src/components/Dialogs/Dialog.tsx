@@ -8,7 +8,6 @@ import {
   Button,
 } from "@/components";
 import { removeDialog, showDialog } from "@/store/Slices/dialogSlice";
-import { useEffect } from "react";
 
 type DialogProps = {
   textBtn?: string;
@@ -39,10 +38,6 @@ const Dialog: React.FC<DialogProps> = ({ textBtn, dialogName, children }) => {
   const openPopup = () => {
     return dialog.some((item) => item === dialogName);
   };
-
-  /* useEffect(() => {
-    console.log(dialog);
-  }, [dialog]); */
 
   return (
     <DialogSH open={openPopup()} onOpenChange={handlePopup}>

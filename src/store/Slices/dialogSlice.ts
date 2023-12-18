@@ -10,7 +10,6 @@ export const dialogSlice = createSlice({
   reducers: {
     showDialog(state, action: PayloadAction<string>) {
       state.dialog = [...state.dialog, action.payload];
-      console.log(state.dialog);
     },
     removeDialog(state, action: PayloadAction<string>) {
       state.dialog = state.dialog.filter((dialog) => dialog !== action.payload);
