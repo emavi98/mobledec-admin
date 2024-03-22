@@ -1,12 +1,12 @@
-import { Page, Text, View, Document, StyleSheet } from "@react-pdf/renderer";
-import { PDFModel } from "@/interfaces/general-dto";
+import { Page, Text, View, Document, StyleSheet } from '@react-pdf/renderer';
+import { PDFModel } from '@/types/general-dto';
 
 const styles = StyleSheet.create({
   page: {
-    flexDirection: "column",
+    flexDirection: 'column',
   },
   title: {
-    textAlign: "center",
+    textAlign: 'center',
   },
   mainView: {
     margin: 20,
@@ -18,25 +18,25 @@ const styles = StyleSheet.create({
     marginBottom: 2,
   },
   titleProducts: {
-    textAlign: "center",
+    textAlign: 'center',
     marginBottom: 20,
   },
   titleShipping: {
-    textAlign: "center",
+    textAlign: 'center',
     marginBottom: 20,
   },
   titlePayment: {
-    textAlign: "center",
+    textAlign: 'center',
     marginBottom: 20,
   },
 });
 
-const PDF: React.FC<{ orderInfo: PDFModel }> = ({ orderInfo }) => {
+const Pdf: React.FC<{ orderInfo: PDFModel }> = ({ orderInfo }) => {
   return (
     <>
       {orderInfo && (
         <Document>
-          <Page size={"A4"} style={styles.page}>
+          <Page size={'A4'} style={styles.page}>
             <View style={styles.mainView}>
               <Text style={styles.title}>Información del Pedido</Text>
             </View>
@@ -104,4 +104,4 @@ const PDF: React.FC<{ orderInfo: PDFModel }> = ({ orderInfo }) => {
   );
 };
 
-export default PDF;
+export default Pdf;
