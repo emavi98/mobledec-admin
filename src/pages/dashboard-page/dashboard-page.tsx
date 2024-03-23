@@ -1,6 +1,7 @@
 import {
   Button,
-  CalendarDateRangePicker,
+  OverviewShadcnMbd,
+  DateRangePickerShadcnMbd,
   Card,
   CardContent,
   CardDescription,
@@ -10,8 +11,8 @@ import {
   TabsContent,
   TabsList,
   TabsTrigger,
-} from 'components';
-import { Overview } from '../../components/dashboard/overview/overview';
+} from '../../components';
+
 //import { CalendarDateRangePicker } from "@/app/examples/dashboard/components/date-range-picker"
 
 //import { Overview } from '@/app/examples/dashboard/components/overview';
@@ -26,7 +27,7 @@ export const DashboardPage = () => {
           <div className="flex items-center justify-between space-y-2">
             <h2 className="text-3xl font-bold tracking-tight">Dashboard</h2>
             <div className="flex items-center space-x-2">
-              <CalendarDateRangePicker />
+              <DateRangePickerShadcnMbd />
               <Button>Download</Button>
             </div>
           </div>
@@ -153,7 +154,7 @@ export const DashboardPage = () => {
                     <CardTitle>Overview</CardTitle>
                   </CardHeader>
                   <CardContent className="pl-2">
-                    <Overview />
+                    <OverviewShadcnMbd />
                   </CardContent>
                 </Card>
                 <Card className="col-span-3">

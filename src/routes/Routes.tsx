@@ -7,8 +7,7 @@ import {
   OrdersPage,
   ProductsPage,
   ProvidersPage,
-  ReportsPage,
-} from '@/pages';
+} from 'pages';
 
 export const Routes = createBrowserRouter([
   {
@@ -35,10 +34,6 @@ export const Routes = createBrowserRouter([
       {
         path: '/proveedores',
         element: <ProvidersPage />,
-      },
-      {
-        path: '/reportes',
-        element: <ReportsPage />,
       },
     ],
   },

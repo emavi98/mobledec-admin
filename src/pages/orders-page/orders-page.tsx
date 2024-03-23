@@ -1,7 +1,8 @@
 // Components
-import { TableOrdersComponent } from './components/table/table-orders.component';
-import { DialogOrdersForm } from './components/dialog-form/dialog-form.component';
+//import { DialogOrdersForm } from './components/dialog-form/dialog-form.component';
+import { TableShadcnMbd } from 'components';
 import { useFetchOrders } from '../../hooks/useOrders';
+import { columns } from './configurations/table-configurations/columns/columns';
 
 export const OrdersPage = () => {
   const { data, isLoading, error } = useFetchOrders();
@@ -11,8 +12,8 @@ export const OrdersPage = () => {
   console.log(data);
   return (
     <>
-      <TableOrdersComponent {...{ data }} />
-      <DialogOrdersForm />
+      <TableShadcnMbd {...{ data, columns }} />
+      {/* <DialogOrdersForm /> */}
     </>
   );
 };
