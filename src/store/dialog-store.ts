@@ -1,20 +1,15 @@
 import create from 'zustand';
 
 interface DialogStore {
-  dialogNames: string[];
-  addDialog: (dialogName: string) => void;
-  removeDialog: (dialogName: string) => void;
+  isOpen: boolean;
+  showDialog: (isOpen: boolean) => void;
 }
 
 const useDialogStore = create<DialogStore>((set) => ({
-  dialogNames: [],
-  addDialog: (dialogName) =>
+  isOpen: false,
+  showDialog: (isOpen) =>
     set((state) => ({
-      dialogNames: [...state.dialogNames, dialogName],
-    })),
-  removeDialog: (dialogName) =>
-    set((state) => ({
-      dialogNames: state.dialogNames.filter((name) => name !== dialogName),
+      isOpen: isOpen,
     })),
 }));
 

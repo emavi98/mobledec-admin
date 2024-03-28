@@ -1,5 +1,6 @@
 export * from './avatar-profiles';
 export * from './date-pickers';
+export * from './dialogs';
 export * from './faceted-filters';
 export * from './list-actions';
 export * from './list-options';

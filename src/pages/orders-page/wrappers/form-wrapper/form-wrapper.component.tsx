@@ -1,6 +1,6 @@
 import { ReactNode } from 'react';
 import { motion } from 'framer-motion';
-import { ScrollArea } from '@/components/ui';
+import { ScrollArea } from 'components';
 
 type FormWrapperProps = {
   title: string;

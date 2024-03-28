@@ -1,4 +1,4 @@
-import { CardDescription, Button, Label, Input } from '@/components';
+import { CardDescription, Button, Label, Input } from 'components';
 import MinusIconComponent from '../minus-icon/minus-icon';
 import { PlusIcon } from 'lucide-react';
 

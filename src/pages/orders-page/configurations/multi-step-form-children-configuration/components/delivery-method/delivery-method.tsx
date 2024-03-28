@@ -1,4 +1,3 @@
-import FormWrapper from 'pages/orders-page/wrappers/form-wrapper/form-wrapper.component';
 import {
   Card,
   CardContent,
@@ -12,7 +11,8 @@ import {
   SelectContent,
   SelectValue,
   SelectItem,
-} from 'shadcn-ui/atoms';
+} from 'components';
+import { FormWrapper } from 'pages/orders-page/wrappers';
 
 const DeliveryMethodComponent = ({ title }) => {
   return (
@@ -53,4 +53,4 @@ const DeliveryMethodComponent = ({ title }) => {
   );
 };
 
-export default DeliveryMethodComponent;
+export { DeliveryMethodComponent };

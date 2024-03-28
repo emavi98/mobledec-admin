@@ -1,4 +1,4 @@
-import { Card, Button } from '@/components';
+import { Card, Button } from 'components';
 import ProductImageComponent from './components/product-image/product-image';
 import ProductContentComponent from './components/product-content/product-content';
 import DeleteIconComponent from './components/delete-icon/delete-icon';

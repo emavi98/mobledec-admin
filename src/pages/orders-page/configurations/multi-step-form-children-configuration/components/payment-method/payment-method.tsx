@@ -1,4 +1,3 @@
-import FormWrapper from '../../form-wrapper/form-wrapper.component';
 import {
   Button,
   Card,
@@ -14,7 +13,8 @@ import {
   SelectValue,
   SelectItem,
   CardFooter,
-} from '@/components';
+} from 'components';
+import { FormWrapper } from 'pages/orders-page/wrappers';
 
 const PaymentMethodComponent = ({ title }) => {
   return (
@@ -69,4 +69,4 @@ const PaymentMethodComponent = ({ title }) => {
   );
 };
 
-export default PaymentMethodComponent;
+export { PaymentMethodComponent };

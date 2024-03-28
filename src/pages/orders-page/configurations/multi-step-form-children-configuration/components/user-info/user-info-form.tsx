@@ -1,5 +1,3 @@
-/*** Components */
-import FormWrapper from '../../form-wrapper/form-wrapper.component';
 import {
   Label,
   Input,
@@ -8,13 +6,15 @@ import {
   SelectItem,
   SelectTrigger,
   SelectValue,
-} from 'components/ui';
-import SearchComponent from 'components/search/search';
+  SearchBardShadcnMbd,
+} from 'components';
+
+import { FormWrapper } from 'pages/orders-page/wrappers';
 
 const UserInfoForm = ({ title }) => {
   return (
     <FormWrapper title="Datos de cliente">
-      <SearchComponent />
+      <SearchBardShadcnMbd />
       <div className=" flex flex-col px-2 gap-3 mt-2">
         <div className="flex flex-col gap-2">
           <Label htmlFor="framework">Tipo de documento</Label>
@@ -123,4 +123,4 @@ const UserInfoForm = ({ title }) => {
   );
 };
 
-export default UserInfoForm;
+export { UserInfoForm };

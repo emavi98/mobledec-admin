@@ -3,7 +3,7 @@ import { SideBarShadcnMbd } from 'components';
 //import FooterActionsCompoonent from './components/footer-actions/footer-actions.component';
 import { useState } from 'react';
 
-const MultiStepFormComponent = ({ children }) => {
+const MultiStepForm = ({ children }) => {
   const [activeChild, setActive] = useState(0);
 
   return (
@@ -23,4 +23,4 @@ const MultiStepFormComponent = ({ children }) => {
   );
 };
 
-export { MultiStepFormComponent };
+export { MultiStepForm };
