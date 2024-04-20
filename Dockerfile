@@ -1,5 +1,5 @@
 # Usa una imagen base de Node.js
-FROM node:18-alpine
+FROM node:18-alpine AS builder
 
 # Establece el directorio de trabajo dentro del contenedor
 WORKDIR /app
@@ -20,7 +20,7 @@ RUN npm run build
 FROM nginx:alpine
 
 # Copia los archivos estáticos generados por la compilación
-COPY --from=build-stage /app/dist /usr/share/nginx/html
+COPY --from=builder /app/dist /usr/share/nginx/html
 
 # Expone el puerto 32782 en el contenedor
 EXPOSE 32782
