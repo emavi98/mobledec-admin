@@ -20,7 +20,9 @@ RUN npm run build
 FROM nginx:alpine
 
 # Copia los archivos estáticos generados por la compilación
-COPY --from=builder /app/dist /usr/share/nginx/html
+COPY --from=build-stage /app/dist /usr/share/nginx/html
 
 # Expone el puerto 32782 en el contenedor
 EXPOSE 32782
+
+CMD ["nginx", "-g", "daemon off;"]
