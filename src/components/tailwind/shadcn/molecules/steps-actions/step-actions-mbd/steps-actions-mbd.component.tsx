@@ -1,8 +1,10 @@
-import { Button } from 'components';
+/* import { Button } from 'components'; */
 
-const stepsActionsShadcnMbd = ({ isFirstStep, previousStep, isLastStep }) => {
-  return (
-    <div className="w-full items-center flex justify-between">
+const stepsActionsShadcnMbd =
+  (/* { isFirstStep, previousStep, isLastStep } */) => {
+    return (
+      <></>
+      /*     <div className="w-full items-center flex justify-between">
       <div className="">
         <Button
           onClick={previousStep}
@@ -27,8 +29,8 @@ const stepsActionsShadcnMbd = ({ isFirstStep, previousStep, isLastStep }) => {
           </Button>
         </div>
       </div>
-    </div>
-  );
-};
+    </div> */
+    );
+  };
 
 export { stepsActionsShadcnMbd };

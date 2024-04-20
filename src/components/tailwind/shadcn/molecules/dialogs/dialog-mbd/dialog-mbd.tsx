@@ -13,7 +13,6 @@ import { DialogShadMbdTypes } from './types/dialog-mbd.types';
 const DialogShadcnMbd = ({
   children,
   title,
-  footer,
   isOpen,
   handleClose,
 }: DialogShadMbdTypes) => {

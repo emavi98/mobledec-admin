@@ -1,5 +1,4 @@
-import { Page, Text, View, Document, StyleSheet } from '@react-pdf/renderer';
-import { PDFModel } from '@/types/general-dto';
+/* import { Page, Text, View, Document, StyleSheet } from '@react-pdf/renderer';
 
 const styles = StyleSheet.create({
   page: {
@@ -31,7 +30,7 @@ const styles = StyleSheet.create({
   },
 });
 
-const Pdf: React.FC<{ orderInfo: PDFModel }> = ({ orderInfo }) => {
+const Pdf: React.FC<{ orderInfo }> = ({ orderInfo }) => {
   return (
     <>
       {orderInfo && (
@@ -105,3 +104,4 @@ const Pdf: React.FC<{ orderInfo: PDFModel }> = ({ orderInfo }) => {
 };
 
 export default Pdf;
+ */

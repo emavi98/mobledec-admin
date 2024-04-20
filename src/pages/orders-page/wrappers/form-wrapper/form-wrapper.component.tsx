@@ -36,7 +36,7 @@ const FormWrapper = ({ title, description, children }: FormWrapperProps) => {
       exit="exit"
     >
       <ScrollArea className="rounded-md border p-4">
-        <div className="flex flex-col gap-1 px-2">
+        <div className="flex flex-col gap-1 ">
           <h2 className="text-xl font-semibold text-white md:text-2xl">
             {title}
           </h2>

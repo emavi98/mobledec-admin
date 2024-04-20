@@ -1,5 +1,8 @@
 import { DropdownMenu } from 'components';
+interface ListActionsProps {
+  dropDownMenuConfiguration: JSX.Element;
+}
 
-export const ListActionsShadcnMbd = ({ dropDownMenuConfiguration }) => (
-  <DropdownMenu>{dropDownMenuConfiguration}</DropdownMenu>
-);
+export const ListActionsShadcnMbd: React.FC<ListActionsProps> = ({
+  dropDownMenuConfiguration,
+}) => <DropdownMenu>{dropDownMenuConfiguration}</DropdownMenu>;

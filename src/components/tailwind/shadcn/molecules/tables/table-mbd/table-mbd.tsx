@@ -1,17 +1,15 @@
 // Vendors
-import * as React from 'react';
 import {
+  flexRender,
+  useReactTable,
   ColumnFiltersState,
   SortingState,
   VisibilityState,
-  flexRender,
   getCoreRowModel,
-  Row,
-  getFilteredRowModel,
-  getPaginationRowModel,
   getSortedRowModel,
-  useReactTable,
 } from '@tanstack/react-table';
+
+import { useRef, useState } from 'react';
 import { useVirtualizer } from '@tanstack/react-virtual';
 
 import {
@@ -24,17 +22,20 @@ import {
   ScrollArea,
 } from 'components';
 
-/* import { DataTableToolbar } from '../../toolbars/toolbar-mbd/toolbar-mbd'; */
+import type { ColumnDef } from '@tanstack/react-table';
 
-export const TableShadcnMbd = ({ data, columns }) => {
-  const tableContainerRef = React.useRef<HTMLDivElement>(null);
-  const [sorting, setSorting] = React.useState<SortingState>([]);
-  const [columnFilters, setColumnFilters] = React.useState<ColumnFiltersState>(
-    []
-  );
-  const [columnVisibility, setColumnVisibility] =
-    React.useState<VisibilityState>({});
-  const [rowSelection, setRowSelection] = React.useState({});
+interface TableShadcnMbdProps<T extends object> {
+  data?: T[];
+  columns: ColumnDef<T>[];
+}
+export const TableShadcnMbd = <T extends object>({
+  data = [],
+  columns,
+}: TableShadcnMbdProps<T>): JSX.Element => {
+  const tableContainerRef = useRef<HTMLDivElement>(null);
+  const [sorting, setSorting] = useState<SortingState>([]);
+  const [columnFilters, setColumnFilters] = useState<ColumnFiltersState>([]);
+  const [columnVisibility, setColumnVisibility] = useState<VisibilityState>({});
 
   const table = useReactTable({
     data,
@@ -45,20 +46,16 @@ export const TableShadcnMbd = ({ data, columns }) => {
     getCoreRowModel: getCoreRowModel(),
     manualSorting: true,
     debugTable: true,
-    /*     getPaginationRowModel: getPaginationRowModel(),
-    getSortedRowModel: getSortedRowModel(),
-    getFilteredRowModel: getFilteredRowModel(), */
     onColumnVisibilityChange: setColumnVisibility,
-    //sonRowSelectionChange: setRowSelection,
     state: {
       sorting,
       columnFilters,
       columnVisibility,
-      rowSelection,
     },
   });
 
   const { rows } = table.getRowModel();
+
   const rowVirtualizer = useVirtualizer({
     count: rows.length,
     estimateSize: () => 33, //estimate row height for accurate scrollbar dragging
@@ -73,12 +70,11 @@ export const TableShadcnMbd = ({ data, columns }) => {
   });
 
   return (
-    <div className=" p-4 ">
-      {/*  <DataTableToolbar table={table} /> */}
+    <div className="px-3">
       <div ref={tableContainerRef}>
-        <ScrollArea className="2xl:h-[600px] md:h-[300px] rounded-md border">
+        <ScrollArea className="2xl:h-[550px] md:h-[300px] rounded-md border">
           <Table>
-            <TableHeader>
+            <TableHeader className="sticky top-0 z-10">
               {table.getHeaderGroups().map((headerGroup) => (
                 <TableRow key={headerGroup.id}>
                   {headerGroup.headers.map((header) => {
@@ -98,13 +94,12 @@ export const TableShadcnMbd = ({ data, columns }) => {
             </TableHeader>
             <TableBody>
               {rowVirtualizer.getVirtualItems().map((virtualRow) => {
-                const row = rows[virtualRow.index] as any;
+                const row = rows[virtualRow.index];
                 return (
                   <TableRow
+                    data-index={virtualRow.index}
                     ref={(node) => rowVirtualizer.measureElement(node)}
                     key={row.id}
-
-                    // data-state={row.getIsSelected() && 'selected'}
                   >
                     {row.getVisibleCells().map((cell) => (
                       <TableCell key={cell.id}>
@@ -117,13 +112,6 @@ export const TableShadcnMbd = ({ data, columns }) => {
                   </TableRow>
                 );
               })}{' '}
-              {/*              : (
-            <TableRow>
-              <TableCell colSpan={columns.length} className="h-24 text-center">
-                No results.
-              </TableCell>
-            </TableRow>
-            )  */}
             </TableBody>
           </Table>
         </ScrollArea>

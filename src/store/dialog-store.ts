@@ -8,7 +8,7 @@ interface DialogStore {
 const useDialogStore = create<DialogStore>((set) => ({
   isOpen: false,
   showDialog: (isOpen) =>
-    set((state) => ({
+    set(() => ({
       isOpen: isOpen,
     })),
 }));

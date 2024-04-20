@@ -9,7 +9,7 @@ import {
   TableHead,
   TableHeader,
   TableRow,
-} from '@/components/ui/table';
+} from 'components';
 
 const meta: Meta<typeof Table> = {
   title: 'Example/Table',

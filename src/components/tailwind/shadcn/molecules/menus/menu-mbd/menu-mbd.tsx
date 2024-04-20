@@ -19,7 +19,7 @@ export const MenuShadcnMbd = ({
                 : 'text-sm font-medium text-muted-foreground transition-colors hover:text-primary'
             }
           >
-            Dashboard
+            Informe
           </span>
         )}
       </NavLink>
@@ -32,7 +32,20 @@ export const MenuShadcnMbd = ({
                 : 'text-sm font-medium text-muted-foreground transition-colors hover:text-primary'
             }
           >
-            Orders
+            Pedidos
+          </span>
+        )}
+      </NavLink>
+      <NavLink to={'productos'}>
+        {({ isActive }) => (
+          <span
+            className={
+              isActive
+                ? 'text-sm font-medium transition-colors hover:text-primary'
+                : 'text-sm font-medium text-muted-foreground transition-colors hover:text-primary'
+            }
+          >
+            Productos
           </span>
         )}
       </NavLink>
@@ -58,7 +71,7 @@ export const MenuShadcnMbd = ({
                 : 'text-sm font-medium text-muted-foreground transition-colors hover:text-primary'
             }
           >
-            Providers
+            Proveedores
           </span>
         )}
       </NavLink>
