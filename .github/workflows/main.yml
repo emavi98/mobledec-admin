@@ -17,7 +17,7 @@ jobs:
         run: rm -rf /var/www/vs/admin.mobledec.com/*
 
       - name: Move to repository directory
-        run: cd /var/www/vs/admin.mobledec.com/
+        run: cd /var/www/vhosts/mobledec.com/admin.mobledec.com/
 
       - name: Pull latest changes
         run: git pull
@@ -26,7 +26,7 @@ jobs:
         run: cd /
 
       - name: Build and push Frontend admin Docker image
-        run: docker build -t mobledec_admin /var/www/vs/admin.mobledec.com
+        run: docker build -t mobledec_admin /var/www/vhosts/mobledec.com/admin.mobledec.com/
 
       - name: Run Docker container
         run: docker run -d -p 28741:80 --memory=3000m --restart=always mobledec_admin
