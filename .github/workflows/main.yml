@@ -24,3 +24,14 @@ jobs:
 
       - name: Build and push Frontend admin Docker image
         run: docker build -t mobledec_admin /var/www/vhosts/mobledec.com/admin.mobledec.com/
+
+      # Limpiar imágenes sin etiquetas
+      - name: Clean Docker images
+        run: docker rmi $(docker images -q -f dangling=true) || true
+
+      # Detener y eliminar el contenedor existente
+      - name: Stop and remove previous container
+        run: docker stop mobledec_admin || true && docker rm mobledec_admin || true
+
+      - name: Run Docker container
+        run: docker run -d -p 28741:80 --memory=3000m --restart=always --name mobledec_admin mobledec_admin
