@@ -16,8 +16,8 @@ jobs:
       - name: Clean build directory
         run: rm -rf /var/www/vs/admin.mobledec.com/*
 
-      - name: Copy files to build directory
-        run: cp -r /path/to/repository/* /var/www/vs/admin.mobledec.com/
+      - name: Clone repository
+        run: git clone https://github.com/emavi98/mobledec-admin /var/www/vs/admin.mobledec.com/
 
       - name: Move to parent directory
         run: cd ..
