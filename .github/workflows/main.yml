@@ -29,4 +29,4 @@ jobs:
         run: docker stop $(docker ps -q --filter ancestor=mobledec_admin) && docker rm $(docker ps -aq --filter ancestor=mobledec_admin)
 
       - name: Run Docker container
-        run: docker run -d -p 28741:80 --memory=3000m --restart=always mobledec_admin
+        run: docker run -d -p 28741:80 --memory=3000m --restart=always --name mobledec_admin mobledec_admin
