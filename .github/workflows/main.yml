@@ -13,11 +13,17 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v2
 
+      - name: Clean build directory
+        run: rm -rf /var/www/vs/admin.mobledec.com/*
+
+      - name: Copy files to build directory
+        run: cp -r /path/to/repository/* /var/www/vs/admin.mobledec.com/
+
       - name: Move to parent directory
         run: cd ..
 
       - name: Build and push Frontend admin Docker image
-        run: docker build -t mobledec_admin /var/www/vhosts/mobledec.com/admin.mobledec.com
+        run: docker build -t mobledec_admin /var/www/vs/admin.mobledec.com
 
       - name: Run Docker container
-        run: docker run -d -p 28741:80 --memory=3000m --restart=always mobledec_admin
+        run: docker run -d -p 28560:80 --memory=3000m --restart=always mobledec_admin
