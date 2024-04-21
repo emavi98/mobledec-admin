@@ -16,11 +16,14 @@ jobs:
       - name: Clean build directory
         run: rm -rf /var/www/vs/admin.mobledec.com/*
 
-      - name: Clone repository
-        run: git clone https://github.com/emavi98/mobledec-admin /var/www/vs/admin.mobledec.com/
+      - name: Move to repository directory
+        run: cd /var/www/vs/admin.mobledec.com/
+
+      - name: Pull latest changes
+        run: git pull
 
       - name: Move to parent directory
-        run: cd ..
+        run: cd /
 
       - name: Build and push Frontend admin Docker image
         run: docker build -t mobledec_admin /var/www/vs/admin.mobledec.com
