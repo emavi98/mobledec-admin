@@ -13,15 +13,17 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v2
 
-      # Agregar un paso para clonar el repositorio
-      - name: Clone repository
-        run: git clone https://github.com/emavi98/mobledec-admin /var/www/vhosts/mobledec.com/admin.mobledec.com/
-
       - name: Move to repository directory
         run: cd /var/www/vhosts/mobledec.com/admin.mobledec.com/
 
+      - name: Pull latest changes
+        run: git pull origin main
+
       - name: Build and push Frontend admin Docker image
         run: docker build -t mobledec_admin /var/www/vhosts/mobledec.com/admin.mobledec.com/
+
+      - name: Stop and remove previous container
+        run: docker stop $(docker ps -q --filter ancestor=mobledec_admin) && docker rm $(docker ps -aq --filter ancestor=mobledec_admin)
 
       - name: Run Docker container
         run: docker run -d -p 28741:80 --memory=3000m --restart=always mobledec_admin
