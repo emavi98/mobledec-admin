@@ -13,17 +13,11 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v2
 
-      - name: Clean build directory
-        run: rm -rf /var/www/vhosts/mobledec.com/admin.mobledec.com/*
-
       - name: Move to repository directory
         run: cd /var/www/vhosts/mobledec.com/admin.mobledec.com/
 
       - name: Pull latest changes
-        run: git pull
-
-      - name: Move to parent directory
-        run: cd /
+        run: git pull origin main
 
       - name: Build and push Frontend admin Docker image
         run: docker build -t mobledec_admin /var/www/vhosts/mobledec.com/admin.mobledec.com/
