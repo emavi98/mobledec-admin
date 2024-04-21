@@ -20,9 +20,6 @@ jobs:
       - name: Move to repository directory
         run: cd /var/www/vhosts/mobledec.com/admin.mobledec.com/
 
-      - name: Pull latest changes
-        run: git pull origin main
-
       - name: Build and push Frontend admin Docker image
         run: docker build -t mobledec_admin /var/www/vhosts/mobledec.com/admin.mobledec.com/
 
