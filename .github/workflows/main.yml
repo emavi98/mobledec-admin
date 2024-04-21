@@ -26,4 +26,4 @@ jobs:
         run: docker build -t mobledec_admin /var/www/vs/admin.mobledec.com
 
       - name: Run Docker container
-        run: docker run -d -p 28560:80 --memory=3000m --restart=always mobledec_admin
+        run: docker run -d -p 28741:80 --memory=3000m --restart=always mobledec_admin
