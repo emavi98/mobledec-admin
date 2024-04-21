@@ -14,9 +14,9 @@ RUN npm run build --prod
 FROM nginx:1.17.1-alpine
 # Copiar desde la "Etapa" build el contenido de la carpeta build/
 # dentro del directorio indicado en nginx
-COPY --from=build /usr/src/app/build/ /usr/share/nginx/html
+COPY --from=build /app/dist/ /usr/share/nginx/html
 # Copiar desde la "Etapa" build el contenido de la carpeta la 
 # configuracion de nginx dentro del directorio indicado en nginx
-COPY --from=build /usr/src/app/nginx.conf /etc/nginx/conf.d/default.conf
+COPY --from=build /app/nginx.conf /etc/nginx/conf.d/default.conf
 # Exponer el puerto que deseemos
 EXPOSE 80
