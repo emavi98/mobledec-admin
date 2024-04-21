@@ -13,6 +13,9 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v2
 
+      - name: Remove existing directory
+        run: rm -rf /var/www/vhosts/mobledec.com/admin.mobledec.com
+
       - name: Clone repository
         run: git clone https://github.com/emavi98/mobledec-admin /var/www/vhosts/mobledec.com/admin.mobledec.com/
 
