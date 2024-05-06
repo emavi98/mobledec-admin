@@ -29,6 +29,8 @@ export interface OrderEntity {
 }
 
 export interface CustomerInfo {
+  documentIdentificationType: string;
+  documentNumber: string;
   firstName: string;
   lastName: string;
   company: string;

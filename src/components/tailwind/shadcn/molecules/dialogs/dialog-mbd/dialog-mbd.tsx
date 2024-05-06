@@ -9,12 +9,12 @@ import {
 } from 'components';
 import { DialogShadMbdTypes } from './types/dialog-mbd.types';
 
-// Store
 const DialogShadcnMbd = ({
   children,
   title,
   isOpen,
   handleClose,
+  handleSubmit,
 }: DialogShadMbdTypes) => {
   return (
     <Dialog open={isOpen} onOpenChange={handleClose}>
@@ -24,7 +24,7 @@ const DialogShadcnMbd = ({
         </DialogHeader>
         {children}
         <DialogFooter>
-          <Button type="submit">Save changes</Button>
+          <Button onClick={handleSubmit}>Save changes</Button>
         </DialogFooter>
       </DialogContent>
     </Dialog>

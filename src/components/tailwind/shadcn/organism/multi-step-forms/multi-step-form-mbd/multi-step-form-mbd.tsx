@@ -7,7 +7,6 @@ interface MultiStepFormProps {
 }
 const MultiStepForm = ({ multiStepFormConfiguration }: MultiStepFormProps) => {
   const [activeChild, setActive] = useState(0);
-  console.log(multiStepFormConfiguration);
   return (
     <div className="flex flex-row justify-center">
       <div className=" flex  h-[600px] w-[800px] m-1 rounded-[0.5rem] border shadow-md md:shadow-xl p-4">

@@ -14,9 +14,9 @@ import {
 } from 'components';
 import { FormWrapper } from 'pages/orders-page/wrappers';
 
-const PaymentMethodComponent = () => {
+const PaymentMethodComponent = ({ title }: { title: string }) => {
   return (
-    <FormWrapper title="Metodo de pago">
+    <FormWrapper title={title}>
       <Card className="w-[350px]">
         <CardHeader>
           <CardTitle>Total a pagar: 1.200,00€</CardTitle>

@@ -28,7 +28,7 @@ export const columns: ColumnDef<OrderEntity>[] = [
     enableHiding: false,
   },
   {
-    accessorKey: 'billing.first_name',
+    accessorKey: 'billing.firstName',
     header: 'Nombre Completo',
   },
   {
@@ -53,10 +53,10 @@ export const columns: ColumnDef<OrderEntity>[] = [
   },
   {
     id: 'actions',
-    cell: () => (
+    cell: ({ row }) => (
       /*TODO: row props */
       <ListActionsShadcnMbd
-        dropDownMenuConfiguration={<DropDownMenuConfiguration />}
+        dropDownMenuConfiguration={<DropDownMenuConfiguration {...{ row }} />}
       />
     ),
   },

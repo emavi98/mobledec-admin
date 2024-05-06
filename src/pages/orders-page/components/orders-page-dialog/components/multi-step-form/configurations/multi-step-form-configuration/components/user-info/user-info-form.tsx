@@ -18,13 +18,13 @@ import { CircleX } from 'lucide-react';
 // Services
 import { useUsersQuery } from 'services/users-service';
 
-const UserInfoForm = () => {
+const UserInfoForm = ({ title }: { title: string }) => {
   const [isShowedInfo, setIsShowedInfo] = useState<boolean>(false);
   const [keyword, setKeyword] = useState('');
   const { data, isLoading, error } = useUsersQuery(keyword);
 
   return (
-    <FormWrapper title="Datos de cliente">
+    <FormWrapper title={title}>
       <div className="flex items-center space-x-2 pt-2 pb-4">
         <Checkbox
           id="terms"

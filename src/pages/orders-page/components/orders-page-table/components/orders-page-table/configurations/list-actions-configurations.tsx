@@ -8,9 +8,24 @@ import {
 } from 'components';
 import { DotsHorizontalIcon } from '@radix-ui/react-icons';
 import useDialogStore from 'store/dialog-store';
+import useOrdersPageStore from 'store/orders-store';
+import { Row } from '@tanstack/react-table';
+import { OrderEntity } from 'models/orders-entity';
 
-export const DropDownMenuConfiguration = (): JSX.Element => {
+interface DropDownMenuConfigurationProps<TData> {
+  row: Row<TData>;
+}
+export function DropDownMenuConfiguration<TData extends OrderEntity>({
+  row,
+}: DropDownMenuConfigurationProps<TData>): JSX.Element {
   const { showDialog } = useDialogStore();
+  const { setOrderFormValues } = useOrdersPageStore();
+  const handleEditOption = () => {
+    showDialog(true);
+    const ordersFormData = row.original;
+    setOrderFormValues({ ordersFormData });
+  };
+
   return (
     <>
       <DropdownMenuTrigger asChild>
@@ -23,9 +38,7 @@ export const DropDownMenuConfiguration = (): JSX.Element => {
         </Button>
       </DropdownMenuTrigger>
       <DropdownMenuContent align="end">
-        <DropdownMenuItem onClick={() => showDialog(true)}>
-          Editar
-        </DropdownMenuItem>
+        <DropdownMenuItem onClick={handleEditOption}>Editar</DropdownMenuItem>
         <DropdownMenuItem disabled>Generar Albaran</DropdownMenuItem>
         <DropdownMenuItem disabled>Generar PackSlip</DropdownMenuItem>
         <DropdownMenuItem disabled>Generar Factura</DropdownMenuItem>
@@ -38,4 +51,4 @@ export const DropDownMenuConfiguration = (): JSX.Element => {
       </DropdownMenuContent>
     </>
   );
-};
+}

@@ -4,4 +4,5 @@ export type DialogShadMbdTypes = {
   footer?: JSX.Element;
   isOpen: boolean;
   handleClose?: ((open: boolean) => void) | undefined;
+  handleSubmit: () => void;
 };
