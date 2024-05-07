@@ -1,5 +1,4 @@
 import { FormWrapper } from "pages/orders-page/wrappers";
-//import CardProductComponent from '../product-list/components/card-product/card-product';
 import { CardTitle } from "components";
 
 const OrderToSupplierComponent = ({ title }: { title: string }) => {

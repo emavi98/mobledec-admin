@@ -1,8 +1,9 @@
-import { CardDescription, Button, Label, Input } from 'components';
-import MinusIconComponent from '../minus-icon/minus-icon';
-import { PlusIcon } from 'lucide-react';
+import { CardDescription, Button, Input } from "components";
+import MinusIconComponent from "../minus-icon/minus-icon";
+import { PlusIcon } from "lucide-react";
 
-const ProductContentComponent = ({ product }) => {
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+const ProductContentComponent = ({ product }: { product: any }) => {
   return (
     <div className="flex flex-col gap-1.5 ml-3">
       <CardDescription className="text-sm">{product.name}</CardDescription>

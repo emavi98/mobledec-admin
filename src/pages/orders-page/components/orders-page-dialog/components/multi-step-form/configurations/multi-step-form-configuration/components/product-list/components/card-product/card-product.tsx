@@ -1,9 +1,10 @@
-import { Card, Button } from 'components';
-import ProductImageComponent from './components/product-image/product-image';
-import ProductContentComponent from './components/product-content/product-content';
-import DeleteIconComponent from './components/delete-icon/delete-icon';
+import { Card, Button } from "components";
+import ProductImageComponent from "./components/product-image/product-image";
+import ProductContentComponent from "./components/product-content/product-content";
+import DeleteIconComponent from "./components/delete-icon/delete-icon";
 
-const CardProductComponent = ({ product }) => {
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+const CardProductComponent = ({ product }: { product: any }) => {
   return (
     <div className="mt-4">
       <Card>
